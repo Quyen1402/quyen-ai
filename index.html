@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tôn Nữ Xuân Quyên — AI Consultant | Quyen.ai</title>
+<meta name="description" content="Chuyên gia tư vấn AI cho doanh nghiệp Việt Nam. Chiến lược AI, triển khai, đào tạo." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy:      #0d1b3e;
+    --navy-mid:  #162352;
+    --navy-soft: #1e2f6a;
+    --pink:      #e8799a;
+    --pink-soft: #f2a5bb;
+    --pink-pale: #fde8ef;
+    --white:     #ffffff;
+    --off-white: #f7f8fc;
+    --text-muted:#8a96b0;
+    --gradient-hero: linear-gradient(135deg, #0d1b3e 0%, #1e2f6a 50%, #2a1840 100%);
+    --gradient-pink: linear-gradient(135deg, #e8799a, #f2a5bb);
+    --gradient-card: linear-gradient(160deg, #162352 0%, #1e2f6a 100%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    transition: background .35s, box-shadow .35s;
+  }
+  nav.scrolled {
+    background: rgba(13,27,62,.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px rgba(0,0,0,.25);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 700;
+    color: var(--white); letter-spacing: .04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--pink); }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,.82); font-size: .85rem; font-weight: 500;
+    letter-spacing: .06em; text-transform: uppercase;
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--pink-soft); }
+  .nav-cta {
+    padding: .52rem 1.4rem;
+    background: var(--gradient-pink);
+    color: var(--white) !important;
+    border-radius: 999px;
+    font-weight: 600 !important;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--gradient-hero);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 120px 6vw 80px;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(232,121,154,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--pink-soft); margin-bottom: 1.4rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 28px; height: 1px;
+    background: var(--pink-soft); opacity: .6;
+  }
+  .hero-name {
+    font-size: clamp(3.2rem, 7vw, 6.2rem);
+    font-weight: 300; color: var(--white);
+    line-height: 1.08; letter-spacing: -.01em;
+    margin-bottom: .5rem;
+  }
+  .hero-name em {
+    font-style: normal; font-weight: 600;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-weight: 300; color: rgba(255,255,255,.7);
+    margin-bottom: 2.2rem; letter-spacing: .04em;
+  }
+  .hero-desc {
+    max-width: 560px; font-size: .97rem; line-height: 1.8;
+    color: rgba(255,255,255,.6); margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    padding: .82rem 2.2rem;
+    background: var(--gradient-pink);
+    color: var(--white); font-weight: 600; font-size: .9rem;
+    border: none; border-radius: 999px; cursor: pointer;
+    text-decoration: none; letter-spacing: .03em;
+    box-shadow: 0 8px 28px rgba(232,121,154,.35);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,121,154,.45); }
+  .btn-outline {
+    padding: .82rem 2.2rem;
+    background: transparent;
+    color: rgba(255,255,255,.85); font-weight: 500; font-size: .9rem;
+    border: 1px solid rgba(255,255,255,.3); border-radius: 999px;
+    text-decoration: none; letter-spacing: .03em;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-outline:hover { border-color: var(--pink-soft); color: var(--pink-soft); }
+  .hero-scroll {
+    position: absolute; bottom: 2.4rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.35); font-size: .72rem; letter-spacing: .12em;
+    text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 36px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{opacity:.3} 50%{opacity:.9} }
+
+  /* ── STATS ── */
+  #stats {
+    background: var(--off-white);
+    padding: 5rem 6vw;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2px; background: #e2e6f0; border-radius: 16px; overflow: hidden;
+  }
+  .stat-item {
+    background: var(--white); padding: 2.8rem 2rem; text-align: center;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700; line-height: 1;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: .4rem;
+  }
+  .stat-label { font-size: .82rem; color: var(--text-muted); letter-spacing: .06em; text-transform: uppercase; }
+
+  /* ── SECTION COMMON ── */
+  .section { padding: 7rem 6vw; }
+  .section-dark { background: var(--navy); color: var(--white); }
+  .section-soft { background: var(--off-white); }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .eyebrow {
+    display: inline-block;
+    font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--pink); margin-bottom: .9rem;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.15;
+  }
+  .section-title.light { color: var(--white); }
+  .section-sub {
+    max-width: 580px; margin: 1rem auto 0;
+    font-size: .97rem; line-height: 1.8; color: var(--text-muted);
+  }
+  .section-sub.light { color: rgba(255,255,255,.6); }
+
+  /* ── APPROACH ── */
+  .approach-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .approach-text h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 600;
+    line-height: 1.2; margin-bottom: 1.4rem;
+  }
+  .approach-text p { font-size: .97rem; line-height: 1.9; color: #4a5270; margin-bottom: 1rem; }
+  .approach-pills { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.8rem; }
+  .pill {
+    padding: .42rem 1rem;
+    background: var(--pink-pale); color: var(--pink);
+    border-radius: 999px; font-size: .78rem; font-weight: 600; letter-spacing: .04em;
+  }
+  .approach-visual {
+    background: var(--gradient-card); border-radius: 20px;
+    padding: 3rem 2.5rem; color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .approach-visual::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(232,121,154,.22) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .approach-visual h3 {
+    font-size: 1.5rem; font-weight: 600; margin-bottom: 1.8rem; color: var(--white);
+  }
+  .approach-steps { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+  .approach-steps li {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+  }
+  .step-num {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: var(--gradient-pink); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .78rem; font-weight: 700; color: var(--white);
+  }
+  .step-content { flex: 1; }
+  .step-content strong { display: block; font-size: .9rem; color: var(--white); margin-bottom: .2rem; }
+  .step-content span { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--gradient-card); border-radius: 20px;
+    padding: 2.6rem 2.2rem; color: var(--white);
+    position: relative; overflow: hidden;
+    transition: transform .25s;
+  }
+  .service-card:hover { transform: translateY(-6px); }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(232,121,154,.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(232,121,154,.18);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.4rem; font-size: 1.5rem;
+  }
+  .service-card h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: .8rem; }
+  .service-card p { font-size: .88rem; line-height: 1.8; color: rgba(255,255,255,.6); margin-bottom: 1.4rem; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .service-list li {
+    font-size: .82rem; color: rgba(255,255,255,.7);
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .service-list li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--pink); flex-shrink: 0;
+  }
+
+  /* ── PROCESS ── */
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0; max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .process-step {
+    text-align: center; padding: 2.4rem 1.6rem; position: relative;
+  }
+  .process-step:not(:last-child)::after {
+    content: '→';
+    position: absolute; right: -1px; top: 50%; transform: translateY(-50%);
+    color: var(--pink); font-size: 1.2rem; opacity: .5;
+  }
+  .process-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--gradient-pink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--white);
+    margin: 0 auto 1.2rem;
+    box-shadow: 0 6px 20px rgba(232,121,154,.35);
+  }
+  .process-step h4 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; color: var(--white); }
+  .process-step p { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.7; }
+
+  /* ── ABOUT ── */
+  #about {
+    padding: 7rem 6vw;
+    background: var(--white);
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto;
+  }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo {
+    width: 100%; aspect-ratio: 3/4; border-radius: 20px;
+    background: var(--gradient-card);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; overflow: hidden;
+    position: relative;
+  }
+  .about-photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(13,27,62,.5) 100%);
+  }
+  .about-badge {
+    position: absolute; bottom: -1.2rem; right: -1.2rem;
+    background: var(--gradient-pink); color: var(--white);
+    padding: 1rem 1.4rem; border-radius: 14px;
+    text-align: center; box-shadow: 0 8px 24px rgba(232,121,154,.4);
+  }
+  .about-badge strong { display: block; font-size: 1.6rem; font-family: 'Cormorant Garamond', serif; }
+  .about-badge span { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+  .about-content h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 600; margin-bottom: 1.4rem;
+  }
+  .about-content p { font-size: .97rem; line-height: 1.9; color: #4a5270; margin-bottom: 1rem; }
+  .about-creds { display: flex; flex-direction: column; gap: .8rem; margin-top: 1.8rem; }
+  .cred-item { display: flex; align-items: center; gap: 1rem; }
+  .cred-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--pink-pale);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .cred-text strong { display: block; font-size: .9rem; color: var(--navy); }
+  .cred-text span { font-size: .82rem; color: var(--text-muted); }
+
+  /* ── CLIENTS ── */
+  .clients-logos {
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+    max-width: 900px; margin: 0 auto;
+  }
+  .client-chip {
+    padding: .7rem 1.6rem;
+    border: 1px solid #e2e6f0; border-radius: 999px;
+    font-size: .85rem; font-weight: 500; color: var(--text-muted);
+    background: var(--white);
+  }
+
+  /* ── FAQ ── */
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,.1); }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 0; cursor: pointer;
+    font-size: 1.02rem; font-weight: 500; color: var(--white);
+    gap: 1rem;
+  }
+  .faq-q .faq-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: .9rem; color: var(--pink);
+    transition: transform .25s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .35s ease;
+    font-size: .92rem; line-height: 1.85; color: rgba(255,255,255,.6);
+    padding-bottom: 0;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.4rem; }
+
+  /* ── CTA ── */
+  #cta {
+    padding: 8rem 6vw; text-align: center;
+    background: var(--off-white);
+  }
+  #cta h2 {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 600;
+    max-width: 700px; margin: 0 auto 1.2rem; line-height: 1.15;
+  }
+  #cta p { font-size: .97rem; color: var(--text-muted); margin-bottom: 2.4rem; max-width: 500px; margin-left:auto; margin-right:auto; }
+  .cta-form {
+    display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap;
+    max-width: 480px; margin: 0 auto;
+  }
+  .cta-form input {
+    flex: 1; min-width: 220px;
+    padding: .82rem 1.4rem;
+    border: 1.5px solid #dde2ef; border-radius: 999px;
+    font-size: .92rem; font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color .2s;
+  }
+  .cta-form input:focus { border-color: var(--pink); }
+  .cta-form button {
+    padding: .82rem 2rem;
+    background: var(--gradient-pink); color: var(--white);
+    border: none; border-radius: 999px; font-size: .9rem; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+    box-shadow: 0 6px 24px rgba(232,121,154,.35);
+    transition: transform .2s;
+  }
+  .cta-form button:hover { transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); padding: 3.5rem 6vw 2.5rem;
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-brand { max-width: 340px; }
+  .footer-brand .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--white);
+    margin-bottom: .7rem; display: block;
+  }
+  .footer-brand .logo span { color: var(--pink); }
+  .footer-brand p { font-size: .85rem; color: rgba(255,255,255,.45); line-height: 1.7; }
+  .footer-links { display: flex; gap: 3rem; flex-wrap: wrap; }
+  .footer-col h5 {
+    font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--pink-soft); margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .footer-col ul li a { color: rgba(255,255,255,.5); font-size: .85rem; text-decoration: none; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--pink-soft); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.07);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: .78rem; color: rgba(255,255,255,.3);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .approach-grid, .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-grid { padding-bottom: 2rem; }
+    .process-step:not(:last-child)::after { display: none; }
+    .footer-top { flex-direction: column; }
+    .footer-links { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Quyen<span>.ai</span></a>
+  <ul class="nav-links">
+    <li><a href="#approach">Phương pháp</a></li>
+    <li><a href="#services">Dịch vụ</a></li>
+    <li><a href="#about">Về tôi</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#cta" class="nav-cta">Liên hệ tư vấn</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">AI Consultant &amp; Strategist</div>
+  <h1 class="hero-name">Tôn Nữ<br><em>Xuân Quyên</em></h1>
+  <p class="hero-tagline">Chiến lược. Triển khai. Chuyển đổi.</p>
+  <p class="hero-desc">
+    Tôi giúp doanh nghiệp Việt Nam đưa AI vào thực tiễn hoạt động — không chỉ là công nghệ,
+    mà là lợi thế cạnh tranh bền vững.
+  </p>
+  <div class="hero-actions">
+    <a href="#cta" class="btn-primary">Đặt buổi tư vấn</a>
+    <a href="#services" class="btn-outline">Xem dịch vụ</a>
+  </div>
+  <div class="hero-scroll">Khám phá</div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Doanh nghiệp tư vấn</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Năm kinh nghiệm AI</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Học viên đã đào tạo</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">95%</div>
+      <div class="stat-label">Tỷ lệ hài lòng</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach" class="section">
+  <div class="approach-grid">
+    <div class="approach-text">
+      <span class="eyebrow">Phương pháp tiếp cận</span>
+      <h2>AI không phải buzzword —<br>đó là công cụ tạo ra kết quả thực</h2>
+      <p>
+        Tôi không bán giải pháp chung chung. Mỗi doanh nghiệp có quy trình,
+        đội ngũ, và mục tiêu riêng. Tôi dành thời gian hiểu sâu trước khi
+        đề xuất bất kỳ công nghệ nào.
+      </p>
+      <p>
+        Từ chiến lược AI tổng thể đến từng ứng dụng cụ thể, tôi đồng hành
+        xuyên suốt — từ bản thiết kế đến ngày ra mắt và sau đó.
+      </p>
+      <div class="approach-pills">
+        <span class="pill">ChatGPT / GPT-4o</span>
+        <span class="pill">Claude</span>
+        <span class="pill">Gemini</span>
+        <span class="pill">AI Agents</span>
+        <span class="pill">n8n / Automation</span>
+        <span class="pill">RAG Systems</span>
+      </div>
+    </div>
+    <div class="approach-visual">
+      <h3>Quy trình làm việc</h3>
+      <ol class="approach-steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Discovery &amp; Audit</strong>
+            <span>Khảo sát quy trình hiện tại, xác định điểm đau và cơ hội AI có thể giải quyết ngay</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Thiết kế Roadmap AI</strong>
+            <span>Lên kế hoạch ưu tiên theo ROI, nguồn lực và năng lực đội ngũ</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Pilot &amp; Triển khai</strong>
+            <span>Thử nghiệm nhanh, đo lường kết quả, điều chỉnh trước khi scale</span>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>Đào tạo đội ngũ</strong>
+            <span>Chuyển giao kiến thức để team tự vận hành và phát triển lâu dài</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section section-dark">
+  <div class="section-header">
+    <span class="eyebrow">Dịch vụ</span>
+    <h2 class="section-title light">Tôi có thể giúp gì cho bạn</h2>
+    <p class="section-sub light">Hai mảng chuyên sâu, thiết kế riêng cho doanh nghiệp Việt Nam</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🧠</div>
+      <h3>Tư vấn Chiến lược AI</h3>
+      <p>Xây dựng roadmap AI toàn diện, phù hợp với chiến lược kinh doanh và nguồn lực thực tế của doanh nghiệp bạn.</p>
+      <ul class="service-list">
+        <li>AI Readiness Assessment</li>
+        <li>Thiết kế kiến trúc giải pháp AI</li>
+        <li>Lựa chọn công cụ &amp; nền tảng phù hợp</li>
+        <li>Quản lý rủi ro &amp; đạo đức AI</li>
+        <li>Tư vấn tối ưu chi phí triển khai</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Training &amp; Workshop AI</h3>
+      <p>Chương trình đào tạo thực chiến, giúp đội ngũ của bạn thực sự biết dùng AI trong công việc hàng ngày.</p>
+      <ul class="service-list">
+        <li>Workshop Prompt Engineering</li>
+        <li>AI cho Marketing &amp; Sales</li>
+        <li>AI cho Operations &amp; HR</li>
+        <li>Xây dựng AI SOP cho doanh nghiệp</li>
+        <li>Khóa học nội bộ tùy chỉnh</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Quick Win Sessions</h3>
+      <p>1-on-1 intensive session 2 giờ, tập trung giải quyết một vấn đề cụ thể với kết quả ngay lập tức.</p>
+      <ul class="service-list">
+        <li>Tối ưu quy trình bằng AI</li>
+        <li>Review &amp; cải thiện prompt</li>
+        <li>Chọn tool phù hợp use case</li>
+        <li>Tư vấn chiến lược AI cá nhân</li>
+        <li>Demo và hướng dẫn thực hành</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="section section-dark" style="padding-top:0">
+  <div class="section-header">
+    <span class="eyebrow">Quy trình</span>
+    <h2 class="section-title light">Từ ý tưởng đến kết quả thực</h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <h4>Khám phá</h4>
+      <p>Hiểu sâu về doanh nghiệp, thách thức và mục tiêu cụ thể</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <h4>Chẩn đoán</h4>
+      <p>Xác định đúng vấn đề và cơ hội AI tạo ra giá trị cao nhất</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <h4>Thiết kế</h4>
+      <p>Lên kế hoạch chi tiết, phân kỳ theo nguồn lực thực tế</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <h4>Triển khai</h4>
+      <p>Thực thi có kiểm soát, đo lường liên tục, điều chỉnh kịp thời</p>
+    </div>
+    <div class="process-step">
+      <div class="process-num">05</div>
+      <h4>Chuyển giao</h4>
+      <p>Đào tạo đội ngũ, tài liệu hóa để tự vận hành độc lập</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photo-wrap">
+      <div class="about-photo">
+        <img src="https://media.baodautu.vn/Images/phuongthanh02/2023/01/20/Xuan%20Quyen%20-%201.jpg"
+             alt="Tôn Nữ Xuân Quyên"
+             style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:20px;" />
+      </div>
+      <div class="about-badge">
+        <strong>2×</strong>
+        <span>Founder</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <span class="eyebrow">Về tôi</span>
+      <h2>Tôn Nữ Xuân Quyên</h2>
+      <p>
+        Tôi là doanh nhân kiêm chuyên gia AI ứng dụng — người đã trực tiếp đưa AI vào
+        vận hành doanh nghiệp của mình trước khi bắt đầu tư vấn cho người khác.
+        Là Chủ tịch HĐQT <strong>BluSaigon</strong>, tôi đã triển khai AI agents,
+        data analytics và tự động hóa quy trình ngay trong chính công ty mình.
+      </p>
+      <p>
+        Tôi không dạy lý thuyết. Tôi chia sẻ những gì đã thực sự hoạt động —
+        và cả những gì không hoạt động — từ thực chiến của một người sáng lập
+        doanh nghiệp vừa và nhỏ tại Việt Nam.
+      </p>
+      <div class="about-creds">
+        <div class="cred-item">
+          <div class="cred-icon">🎓</div>
+          <div class="cred-text">
+            <strong>Brigham Young University, USA</strong>
+            <span>Cử nhân Tài chính — Học bổng toàn phần</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🏆</div>
+          <div class="cred-text">
+            <strong>Chủ tịch HĐQT BluSaigon</strong>
+            <span>Thương hiệu bút ngọc trai cao cấp — quà tặng quốc gia Việt Nam</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">📺</div>
+          <div class="cred-text">
+            <strong>Shark Tank Vietnam</strong>
+            <span>Nhận đầu tư từ Shark Việt — doanh thu tăng 13× sau chương trình</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🤖</div>
+          <div class="cred-text">
+            <strong>AI-First Operator</strong>
+            <span>Ứng dụng AI agents &amp; data analytics vào quản trị doanh nghiệp thực tế</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="section section-soft">
+  <div class="section-header">
+    <span class="eyebrow">Đã làm việc cùng</span>
+    <h2 class="section-title">Tin tưởng bởi các doanh nghiệp</h2>
+  </div>
+  <div class="clients-logos">
+    <div class="client-chip">VinFuture</div>
+    <div class="client-chip">VinaCapital</div>
+    <div class="client-chip">Văn phòng Chủ tịch nước</div>
+    <div class="client-chip">Intracom Invest</div>
+    <div class="client-chip">Fibo Capital Vietnam</div>
+    <div class="client-chip">F&amp;B &amp; Retail</div>
+    <div class="client-chip">SME Manufacturing</div>
+    <div class="client-chip">Luxury &amp; Gifting</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section section-dark">
+  <div class="section-header">
+    <span class="eyebrow">Câu hỏi thường gặp</span>
+    <h2 class="section-title light">Bạn muốn biết gì thêm?</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">
+        Doanh nghiệp của tôi chưa biết gì về AI — có thể bắt đầu không?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Hoàn toàn có thể. Thực tế, đây là thời điểm lý tưởng nhất để bắt đầu đúng hướng.
+        Tôi sẽ đánh giá năng lực hiện tại của đội ngũ và thiết kế lộ trình phù hợp,
+        bắt đầu từ những quick win dễ triển khai nhất.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Chi phí tư vấn như thế nào?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Chi phí phụ thuộc vào quy mô và nhu cầu cụ thể. Tôi có các gói từ Quick Win Session
+        (2 giờ) đến engagement dài hạn 3–6 tháng. Đặt buổi khám phá miễn phí 30 phút để
+        hiểu nhu cầu trước khi báo giá cụ thể.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Tôi làm trong ngành [X] — AI có phù hợp không?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Tôi đã làm việc với doanh nghiệp từ nhiều ngành: Retail, F&amp;B, Logistics, Fintech,
+        Giáo dục, Y tế, và nhiều hơn nữa. AI có ứng dụng trong hầu hết mọi lĩnh vực.
+        Câu hỏi không phải là "AI có phù hợp không" mà là "AI nào phù hợp nhất."
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Workshop kéo dài bao lâu và format như thế nào?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Workshop tiêu chuẩn kéo dài từ nửa ngày (4 tiếng) đến 2 ngày, tùy chủ đề và độ sâu.
+        Có thể tổ chức online hoặc tại văn phòng doanh nghiệp. Tôi thiết kế nội dung
+        theo use case thực tế của từng đơn vị, không dùng slide template chung.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Sau khi tư vấn xong, tôi có được hỗ trợ tiếp không?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Có. Tôi cung cấp gói hỗ trợ sau triển khai từ 1–3 tháng, bao gồm Q&amp;A sessions,
+        review tiến độ và điều chỉnh khi cần. Mục tiêu là đội ngũ bạn hoàn toàn tự chủ
+        sau khi kết thúc engagement.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Tôi có thể liên hệ qua kênh nào?
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        Điền form liên hệ bên dưới — tôi sẽ phản hồi trong vòng 24 giờ làm việc.
+        Bạn cũng có thể nhắn tin qua LinkedIn hoặc email trực tiếp. Với các trường hợp
+        khẩn, có thể đặt lịch video call qua Calendly.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <span class="eyebrow">Bắt đầu ngay</span>
+  <h2>Sẵn sàng đưa AI vào<br>doanh nghiệp của bạn?</h2>
+  <p>Đặt buổi khám phá miễn phí 30 phút. Không cam kết, không áp lực — chỉ là cuộc trò chuyện thực.</p>
+  <div class="cta-form">
+    <input type="email" placeholder="Email của bạn" />
+    <button type="button">Đặt lịch tư vấn →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Quyen<span>.ai</span></span>
+      <p>Tư vấn AI chiến lược và đào tạo đội ngũ doanh nghiệp. Giúp tổ chức Việt Nam chuyển đổi số thực chất bằng trí tuệ nhân tạo.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Dịch vụ</h5>
+        <ul>
+          <li><a href="#services">Tư vấn chiến lược AI</a></li>
+          <li><a href="#services">Training &amp; Workshop</a></li>
+          <li><a href="#services">Quick Win Session</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Tìm hiểu</h5>
+        <ul>
+          <li><a href="#approach">Phương pháp</a></li>
+          <li><a href="#about">Về tôi</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Liên hệ</h5>
+        <ul>
+          <li><a href="mailto:hello@quyen.ai">hello@quyen.ai</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Calendly</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Tôn Nữ Xuân Quyên. All rights reserved.</span>
+    <span>Quyen.ai</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .stat-item, .process-step, .cred-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
