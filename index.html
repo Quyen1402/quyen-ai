@@ -232,12 +232,12 @@ nav.scrolled{
   border-bottom:1px solid var(--line);
 }
 .profile-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  max-width:1160px;margin:0 auto;
+  display:grid;grid-template-columns:480px 1fr;
+  max-width:1200px;margin:0 auto;
+  min-height:640px;
 }
 .profile-photo{
   position:relative;overflow:hidden;
-  aspect-ratio:3/4;
 }
 .profile-photo img{
   width:100%;height:100%;object-fit:cover;
@@ -246,7 +246,7 @@ nav.scrolled{
 }
 .profile-photo:hover img{transform:scale(1.03)}
 .profile-content{
-  padding:5rem 5rem 4rem;
+  padding:4rem 4.5rem;
   display:flex;flex-direction:column;justify-content:center;
   background:var(--cream);
 }
@@ -289,18 +289,21 @@ nav.scrolled{
   background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;
 }
 .service-row{
-  display:grid;grid-template-columns:80px 1fr auto;
-  align-items:start;gap:2.5rem;
+  display:grid;grid-template-columns:72px 1fr 160px;
+  align-items:center;gap:2.5rem;
   background:var(--cream);padding:2.8rem 3rem;
   transition:background .25s;
 }
 .service-row:hover{background:#fff}
+/* inline link = mobile only */
+.service-link-mobile{display:none}
 .service-num{
   font-family:'Figtree',sans-serif;
-  font-size:3rem;font-weight:400;
+  font-size:2.8rem;font-weight:800;
   color:var(--cream-3);line-height:1;
-  margin-top:.3rem;
+  letter-spacing:-.04em;
 }
+.service-action{text-align:right}
 .service-body{}
 .service-tag{
   font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
@@ -570,58 +573,51 @@ footer{
 .center{text-align:center}
 
 /* ─────────────── RESPONSIVE ─────────────── */
-/* 1100px */
+/* 1100px — collapse profile to equal halves, service loses action col */
 @media(max-width:1100px){
-  .profile-grid{grid-template-columns:1fr 1fr}
-  .profile-content{padding:4rem 3.5rem}
+  .profile-grid{grid-template-columns:1fr 1fr;min-height:auto}
+  .profile-content{padding:3.5rem 3rem}
   .service-row{grid-template-columns:60px 1fr;gap:1.8rem}
   .service-action{display:none}
-  .service-desc::after{
-    content:'';display:block;
-    margin-top:1.2rem;
-  }
-  /* show link inline */
-  .service-row .service-link-inline{display:inline-flex}
+  .service-link-mobile{display:inline-flex;margin-top:1.1rem}
 }
-/* 1024px */
+/* 1024px — stack profile, 2-col courses */
 @media(max-width:1024px){
-  .profile-grid{grid-template-columns:1fr}
-  .profile-photo{aspect-ratio:16/9;max-height:480px}
-  .profile-content{padding:3.5rem 5vw}
+  .profile-grid{grid-template-columns:1fr;min-height:auto}
+  .profile-photo{aspect-ratio:16/9;max-height:520px}
+  .profile-content{padding:3rem 5vw}
   .courses-grid{grid-template-columns:1fr 1fr}
   .books-editorial{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
 }
-/* 768px */
+/* 768px — single column everything */
 @media(max-width:768px){
   .section{padding:4rem 5vw}
   nav .nav-links{display:none}
   #hero{min-height:100svh}
-  .hero-inner{padding:0 5vw 4rem}
-  .service-row{grid-template-columns:1fr;gap:1rem;padding:2.2rem}
-  .service-num{font-size:2rem;margin-bottom:.5rem}
+  .hero-inner{padding:0 5vw 3.5rem}
+  .service-row{grid-template-columns:1fr;gap:.8rem;padding:2rem 1.6rem}
+  .service-num{font-size:2rem;margin-bottom:.3rem}
   .courses-grid{grid-template-columns:1fr}
-  .events-mosaic{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto;
-  }
+  .events-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .ev-photo:first-child{grid-row:auto;grid-column:1/-1;aspect-ratio:16/9}
   .ev-photo:not(:first-child){aspect-ratio:4/3}
-  .book-feature{grid-template-columns:120px 1fr;gap:1.4rem;padding:2rem}
+  .book-feature{grid-template-columns:110px 1fr;gap:1.3rem;padding:1.8rem}
   .foot-grid{grid-template-columns:1fr}
-  .hero-stats{gap:0;flex-wrap:nowrap;overflow-x:auto}
-  .h-stat{padding-right:1.8rem;margin-right:1.8rem;min-width:max-content}
+  .hero-stats{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.5rem}
+  .h-stat{padding-right:1.6rem;margin-right:1.6rem;min-width:max-content}
 }
-/* 480px */
+/* 480px — true mobile */
 @media(max-width:480px){
-  .hero-h1{font-size:2.4rem}
+  .hero-h1{font-size:2.2rem}
   .books-editorial{grid-template-columns:1fr}
-  .book-feature{grid-template-columns:1fr}
-  .book-cover{max-width:150px}
+  .book-feature{grid-template-columns:1fr;gap:1.2rem}
+  .book-cover{max-width:140px}
   .events-mosaic{grid-template-columns:1fr}
-  .ev-photo:first-child{grid-column:auto}
+  .ev-photo:first-child{grid-column:auto;aspect-ratio:4/3}
   .foot-grid{grid-template-columns:1fr}
-  .service-action{display:block}
+  .hero-stats{gap:0}
+  .h-stat{padding-right:1.4rem;margin-right:1.4rem}
 }
 </style>
 </head>
@@ -648,15 +644,14 @@ footer{
   <div class="hero-inner">
     <div class="hero-kicker">
       <span class="hero-kicker-dot"></span>
-      <span>AI Consultant · Author · Speaker</span>
+      <span>Founder CoreU AI · Chủ tịch BluSaigon · PhD Candidate GGU</span>
     </div>
     <h1 class="hero-h1">
-      Doanh nghiệp bạn<br>
-      không thiếu AI —<br>
-      <em>họ thiếu người<br>biết dùng đúng cách.</em>
+      Tôi là Tôn Nữ<br>Xuân Quyên —
+      <em>và tôi giúp bạn<br>dùng AI để đi<br>nhanh hơn.</em>
     </h1>
     <p class="hero-tagline">
-      Tôi không nói về AI sau khi đọc sách. Tôi đưa AI vào chính doanh nghiệp của mình trước, thấy kết quả thật, rồi mới bắt đầu dạy người khác.
+      Tôi đã xây dựng doanh nghiệp, thất bại, đứng dậy — và dùng AI để làm tất cả điều đó hiệu quả hơn. Mọi thứ tôi chia sẻ đều xuất phát từ những gì đã hoạt động thật với chính tôi trước.
     </p>
     <div class="hero-btns">
       <a href="#services" class="btn-warm">Học cùng tôi</a>
@@ -754,7 +749,7 @@ footer{
         <div class="service-tag">Cho người chưa biết bắt đầu từ đâu</div>
         <div class="service-name">Làm Chủ AI Trong 30 Ngày</div>
         <p class="service-desc">Tôi hiểu cảm giác bị bỏ lại khi cả thế giới đang nói về AI. Sau 3 buổi đầu tiên, team một người của bạn sẽ làm được việc của team ba người. Không cần nền tảng kỹ thuật.</p>
-        <a href="https://coreu.ai/courses" target="_blank" class="service-link" style="margin-top:1.2rem">Xem khoá học</a>
+        <a href="https://coreu.ai/courses" target="_blank" class="service-link service-link-mobile">Xem khoá học</a>
       </div>
       <div class="service-action">
         <a href="https://coreu.ai/courses" target="_blank" class="service-link">Xem khoá học</a>
@@ -766,7 +761,7 @@ footer{
         <div class="service-tag">Cho chủ doanh nghiệp & lãnh đạo</div>
         <div class="service-name">AI Playbook Cho Người Ra Quyết Định</div>
         <p class="service-desc">Bạn không cần hiểu kỹ thuật. Bạn cần biết AI cắt chi phí ở đâu, tăng doanh thu chỗ nào — và làm thế nào triển khai mà team không loạn. Tôi đồng hành từng bước, không PDF rồi biến mất.</p>
-        <a href="https://coreu.ai/courses" target="_blank" class="service-link" style="margin-top:1.2rem">Xem khoá học</a>
+        <a href="https://coreu.ai/courses" target="_blank" class="service-link service-link-mobile">Xem khoá học</a>
       </div>
       <div class="service-action">
         <a href="https://coreu.ai/courses" target="_blank" class="service-link">Xem khoá học</a>
@@ -778,7 +773,7 @@ footer{
         <div class="service-tag">Cho người muốn xây nghề tư vấn AI</div>
         <div class="service-name">Trở Thành AI Consultant</div>
         <p class="service-desc">Tôi đã xây CoreU AI từ đầu, đồng hành thực cho hàng chục doanh nghiệp. Tôi dạy lại đúng những gì hoạt động thật — từ cách tìm khách đến cách deliver kết quả. Tôi trực tiếp đồng hành, không có trợ giảng thay thế.</p>
-        <a href="#cta" class="service-link" style="margin-top:1.2rem">Nói chuyện với tôi trước</a>
+        <a href="#cta" class="service-link service-link-mobile">Nói chuyện với tôi trước</a>
       </div>
       <div class="service-action">
         <a href="#cta" class="service-link">Nói chuyện trước</a>
