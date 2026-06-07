@@ -46,24 +46,24 @@ nav::before {
   pointer-events:none;
 }
 nav.scrolled::before {
-  background:rgba(13,17,23,.92);
+  background:rgba(13,17,23,.93);
   backdrop-filter:blur(24px);
 }
-nav.scrolled { box-shadow:0 1px 0 rgba(255,255,255,.05); }
+nav.scrolled{box-shadow:0 1px 0 rgba(255,255,255,.05)}
 .nav-logo {
   font-family:'Figtree',sans-serif;
   font-size:1rem;font-weight:600;letter-spacing:.04em;
   color:#fff;position:relative;z-index:1;
 }
 .nav-logo em{font-style:normal;color:var(--blush-lt)}
-.nav-links{display:flex;align-items:center;gap:2.2rem;list-style:none;position:relative;z-index:1}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;position:relative;z-index:1}
 .nav-links a{
-  font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);transition:color .2s;
+  font-size:.73rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);transition:color .2s;
 }
 .nav-links a:hover{color:#fff}
 .nav-cta{
-  padding:.44rem 1.3rem;border:1px solid rgba(168,92,114,.6);
+  padding:.42rem 1.2rem;border:1px solid rgba(168,92,114,.5);
   border-radius:100px;color:var(--blush-lt)!important;
   transition:background .2s,color .2s,border-color .2s!important;
 }
@@ -73,19 +73,18 @@ nav.scrolled { box-shadow:0 1px 0 rgba(255,255,255,.05); }
 #hero {
   min-height:92vh;
   background:var(--dark);
-  display:grid;grid-template-columns:1fr 460px;
+  display:grid;
+  grid-template-columns:1fr min(440px, 42vw);
   align-items:center;
-  gap:0;
   position:relative;overflow:hidden;
-  padding:100px 5vw 60px;
+  padding:96px 5vw 56px;
+  gap:3vw;
 }
-/* grain texture */
 #hero::before {
   content:'';position:absolute;inset:0;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   opacity:.4;pointer-events:none;
 }
-/* radial glow */
 #hero::after {
   content:'';position:absolute;
   top:-20%;left:-10%;
@@ -94,94 +93,85 @@ nav.scrolled { box-shadow:0 1px 0 rgba(255,255,255,.05); }
   pointer-events:none;z-index:0;
 }
 
-.hero-content {
-  position:relative;z-index:2;
-  padding-right:4rem;
-}
+.hero-content{position:relative;z-index:2}
 .hero-badge {
   display:inline-flex;align-items:center;gap:.6rem;
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.1);
   border-radius:100px;
-  padding:.38rem 1rem .38rem .7rem;
-  margin-bottom:2.4rem;
+  padding:.36rem .9rem .36rem .65rem;
+  margin-bottom:2rem;
 }
 .hero-badge-dot {
   width:7px;height:7px;border-radius:50%;
   background:var(--blush-lt);flex-shrink:0;
   animation:pulse 2s ease infinite;
 }
-@keyframes pulse {
+@keyframes pulse{
   0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.4;transform:scale(.7)}
+  50%{opacity:.35;transform:scale(.65)}
 }
-.hero-badge span {
-  font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);
+.hero-badge span{
+  font-size:.66rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
 }
 .hero-h1 {
   font-family:'Figtree',sans-serif;
-  font-size:clamp(2.8rem,5vw,4.6rem);
-  font-weight:800;line-height:1.02;
-  color:#fff;margin-bottom:1rem;
-  letter-spacing:-.02em;
+  font-size:clamp(2.4rem,4.5vw,4.4rem);
+  font-weight:800;line-height:1.03;
+  color:#fff;margin-bottom:.9rem;
+  letter-spacing:-.025em;
 }
-.hero-h1 .accent {
+.hero-h1 .accent{
   color:var(--blush-lt);
-  font-style:italic;font-weight:300;
+  font-style:italic;font-weight:300;display:block;
 }
-.hero-name-line {
-  font-size:clamp(1rem,1.4vw,1.2rem);font-weight:400;
-  color:rgba(255,255,255,.35);letter-spacing:.04em;
-  margin-bottom:1.6rem;
+.hero-byline{
+  font-size:.88rem;font-weight:400;
+  color:rgba(255,255,255,.3);letter-spacing:.03em;
+  margin-bottom:1.5rem;
 }
-.hero-desc {
-  font-size:1.05rem;line-height:1.85;
+.hero-desc{
+  font-size:1rem;line-height:1.85;
   color:rgba(255,255,255,.5);
-  max-width:420px;margin-bottom:2.8rem;
+  max-width:400px;margin-bottom:2.4rem;
 }
-.hero-btns{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-bottom:3.5rem}
+.hero-btns{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-bottom:3rem}
 .btn-primary {
-  padding:.82rem 2.2rem;
+  padding:.78rem 2rem;
   background:var(--blush);color:#fff;
-  font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  font-size:.77rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   border:none;border-radius:100px;cursor:pointer;
-  transition:background .2s,transform .15s,box-shadow .2s;
-  box-shadow:0 4px 20px rgba(168,92,114,.35);
+  box-shadow:0 4px 20px rgba(168,92,114,.4);
+  transition:background .2s,transform .15s,box-shadow .2s;display:inline-block;
 }
-.btn-primary:hover{background:#8f4d62;transform:translateY(-2px);box-shadow:0 8px 28px rgba(168,92,114,.45)}
-.btn-ghost {
-  font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);
-  display:flex;align-items:center;gap:.5rem;
+.btn-primary:hover{background:#8f4d62;transform:translateY(-2px);box-shadow:0 8px 28px rgba(168,92,114,.5)}
+.btn-ghost{
+  font-size:.77rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+  display:inline-flex;align-items:center;gap:.45rem;
   transition:color .2s;
 }
-.btn-ghost::after{content:'→';transition:transform .2s}
 .btn-ghost:hover{color:rgba(255,255,255,.8)}
-.btn-ghost:hover::after{transform:translateX(4px)}
-.hero-stats {
-  display:flex;gap:2.5rem;flex-wrap:wrap;
-  padding-top:2rem;
+.hero-stats{
+  display:flex;gap:2rem;flex-wrap:wrap;
+  padding-top:1.8rem;
   border-top:1px solid rgba(255,255,255,.07);
 }
-.h-stat-n {
+.h-stat-n{
   font-family:'Figtree',sans-serif;
-  font-size:1.9rem;font-weight:700;color:#fff;
-  line-height:1;
+  font-size:1.7rem;font-weight:700;color:#fff;line-height:1;
 }
-.h-stat-l{font-size:.72rem;color:rgba(255,255,255,.3);margin-top:.25rem;line-height:1.4}
+.h-stat-l{font-size:.68rem;color:rgba(255,255,255,.28);margin-top:.2rem;line-height:1.45}
 
 /* Hero photo */
-.hero-photo-wrap {
+.hero-photo-wrap{
   position:relative;z-index:2;
   display:flex;justify-content:center;align-items:flex-end;
   align-self:flex-end;
 }
-.hero-photo-frame {
-  width:100%;max-width:420px;
-  position:relative;
-}
-.hero-photo-img {
+.hero-photo-frame{width:100%;position:relative}
+.hero-photo-img{
   width:100%;
   aspect-ratio:3/4;
   object-fit:cover;object-position:top center;
@@ -189,198 +179,192 @@ nav.scrolled { box-shadow:0 1px 0 rgba(255,255,255,.05); }
   display:block;
   filter:brightness(.92) contrast(1.04);
 }
-.hero-photo-badge {
-  position:absolute;top:1.8rem;left:-2rem;
-  background:rgba(13,17,23,.85);
-  backdrop-filter:blur(12px);
+.hero-photo-badge{
+  position:absolute;top:1.6rem;left:-1.8rem;
+  background:rgba(13,17,23,.88);
+  backdrop-filter:blur(14px);
   border:1px solid rgba(255,255,255,.1);
   border-radius:10px;
-  padding:1rem 1.2rem;
-  min-width:160px;
+  padding:.9rem 1.1rem;
+  min-width:148px;
 }
-.hero-photo-badge-title {
-  font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+.hero-photo-badge-sup{
+  font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--gold);margin-bottom:.3rem;
 }
-.hero-photo-badge-text {
+.hero-photo-badge-text{
   font-family:'Figtree',sans-serif;
-  font-size:.9rem;font-weight:600;color:#fff;line-height:1.3;
+  font-size:.88rem;font-weight:600;color:#fff;line-height:1.3;
 }
 
 /* ── TICKER ── */
-#ticker {
-  background:var(--dark-2);
-  padding:.9rem 0;
+#ticker{
+  background:var(--dark-2);padding:.85rem 0;
   border-top:1px solid rgba(255,255,255,.05);
   overflow:hidden;
 }
-.ticker-track {
-  display:flex;gap:0;
-  animation:tickerScroll 28s linear infinite;
+.ticker-track{
+  display:flex;animation:tickerScroll 30s linear infinite;
   width:max-content;
 }
-@keyframes tickerScroll {
+@keyframes tickerScroll{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
 }
-.ticker-item {
-  display:flex;align-items:center;gap:2.5rem;
-  padding:0 2.5rem;white-space:nowrap;
+.ticker-item{
+  display:flex;align-items:center;gap:2.2rem;
+  padding:0 2.2rem;white-space:nowrap;
 }
-.ticker-name {
-  font-size:.78rem;font-weight:500;letter-spacing:.08em;
-  color:rgba(255,255,255,.22);
-  transition:color .2s;
+.ticker-name{
+  font-size:.75rem;font-weight:500;letter-spacing:.06em;
+  color:rgba(255,255,255,.2);
 }
-.ticker-sep {
+.ticker-sep{
   width:3px;height:3px;border-radius:50%;
   background:rgba(255,255,255,.1);flex-shrink:0;
 }
 
 /* ── SHARED SECTION ── */
-.section{padding:6rem 5vw}
+.section{padding:5.5rem 5vw}
 .section-dark{background:var(--dark);color:#fff}
-.section-dark2{background:var(--dark-2);color:#fff}
 .section-soft{background:var(--ivory-2)}
 .section-white{background:var(--ivory)}
-
-.label {
-  display:inline-flex;align-items:center;gap:.6rem;
-  font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--blush);margin-bottom:1rem;
+.label{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-size:.63rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--blush);margin-bottom:.9rem;
 }
 .label-gold{color:var(--gold)}
-.label::before{content:'';width:20px;height:1px;background:currentColor;opacity:.7}
-.section-title{font-size:clamp(1.9rem,3.5vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.label::before{content:'';width:18px;height:1px;background:currentColor;opacity:.7}
+.label-center::before{display:none}
+.section-title{font-size:clamp(1.8rem,3.2vw,2.9rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
 .section-title.light{color:#fff}
-.section-sub{font-size:.95rem;line-height:1.9;color:var(--ink-soft);max-width:520px;margin-top:.8rem}
-.section-sub.light{color:rgba(255,255,255,.45)}
-.section-head{margin-bottom:4rem}
+.section-sub{font-size:.93rem;line-height:1.9;color:var(--ink-soft);max-width:500px;margin-top:.8rem}
+.section-sub.light{color:rgba(255,255,255,.4)}
+.section-head{margin-bottom:3.5rem}
 
 /* ── ABOUT ── */
-.about-grid {
-  display:grid;grid-template-columns:400px 1fr;
-  gap:6rem;align-items:start;max-width:1080px;margin:0 auto;
+.about-grid{
+  display:grid;grid-template-columns:min(360px,38%) 1fr;
+  gap:5rem;align-items:start;max-width:1060px;margin:0 auto;
 }
 .about-photo-wrap{position:relative}
-.about-photo {
-  width:100%;aspect-ratio:4/5;overflow:hidden;
-  border-radius:12px;
+.about-photo{
+  width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:12px;
 }
 .about-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.about-tag-card {
-  position:absolute;bottom:-1.5rem;right:-1.5rem;
+.about-tag-card{
+  position:absolute;bottom:-1.2rem;right:-1.2rem;
   background:var(--dark);
   border:1px solid rgba(255,255,255,.1);
-  padding:1.1rem 1.5rem;border-radius:10px;
+  padding:1rem 1.3rem;border-radius:10px;
+  max-width:180px;
 }
-.about-tag-sup{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
-.about-tag-main{font-family:'Figtree',sans-serif;font-size:.95rem;font-weight:600;color:#fff}
-.about-content {padding-top:.5rem}
+.about-tag-sup{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.about-tag-main{font-family:'Figtree',sans-serif;font-size:.88rem;font-weight:600;color:#fff;line-height:1.3}
+.about-content{padding-top:.3rem}
 .about-content h2{
-  font-size:clamp(1.8rem,2.8vw,2.5rem);font-weight:700;
-  line-height:1.15;margin-bottom:1.2rem;letter-spacing:-.01em;
+  font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:700;
+  line-height:1.15;margin-bottom:1.1rem;letter-spacing:-.015em;
 }
-.about-content p{font-size:.93rem;line-height:2;color:var(--ink-soft);margin-bottom:1rem}
-.cred-list{margin-top:1.8rem;display:flex;flex-direction:column;gap:.5rem;list-style:none}
+.about-content p{font-size:.92rem;line-height:2;color:var(--ink-soft);margin-bottom:.95rem}
+.cred-list{margin-top:1.6rem;display:flex;flex-direction:column;gap:0;list-style:none}
 .cred-list li{
-  font-size:.82rem;color:var(--ink-soft);
-  display:flex;align-items:flex-start;gap:.75rem;line-height:1.6;
-  padding:.45rem 0;
-  border-bottom:1px solid var(--line);
+  font-size:.81rem;color:var(--ink-soft);
+  display:flex;align-items:flex-start;gap:.7rem;line-height:1.6;
+  padding:.42rem 0;border-bottom:1px solid var(--line);
 }
 .cred-list li:last-child{border-bottom:none}
 .cred-list li::before{
-  content:'';width:14px;height:1px;background:var(--blush);
-  flex-shrink:0;margin-top:.62rem;
+  content:'';width:12px;height:1px;background:var(--blush);
+  flex-shrink:0;margin-top:.6rem;
 }
 
 /* ── SERVICES ── */
-.services-grid {
+.services-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:1.5px;background:var(--line);
   border:1px solid var(--line);border-radius:12px;overflow:hidden;
-  max-width:1080px;margin:0 auto;
+  max-width:1060px;margin:0 auto;
 }
-.service-card {
-  background:var(--ivory);padding:2.8rem 2.2rem;
+.service-card{
+  background:var(--ivory);padding:2.6rem 2rem;
   display:flex;flex-direction:column;
   transition:background .25s;cursor:pointer;
 }
 .service-card:hover{background:#fff}
-.service-num {
+.service-num{
   font-family:'Figtree',sans-serif;
-  font-size:2.4rem;font-weight:800;color:var(--line);
-  line-height:1;margin-bottom:1.5rem;letter-spacing:-.04em;
+  font-size:2.2rem;font-weight:800;color:var(--line);
+  line-height:1;margin-bottom:1.3rem;letter-spacing:-.04em;
 }
-.service-for {
-  font-size:.63rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--blush);margin-bottom:.6rem;
+.service-for{
+  font-size:.61rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blush);margin-bottom:.55rem;
 }
-.service-name {
+.service-name{
   font-family:'Figtree',sans-serif;
-  font-size:1.4rem;font-weight:700;color:var(--ink);
-  margin-bottom:.8rem;line-height:1.18;letter-spacing:-.01em;
+  font-size:1.35rem;font-weight:700;color:var(--ink);
+  margin-bottom:.75rem;line-height:1.18;letter-spacing:-.01em;
 }
-.service-desc{font-size:.86rem;line-height:1.9;color:var(--ink-soft);flex:1}
-.service-link {
+.service-desc{font-size:.85rem;line-height:1.9;color:var(--ink-soft);flex:1}
+.service-link{
   display:inline-flex;align-items:center;gap:.5rem;
-  margin-top:2rem;font-size:.72rem;font-weight:600;
+  margin-top:1.8rem;font-size:.71rem;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
-  transition:color .2s,gap .2s;width:fit-content;
+  transition:color .2s,gap .15s;width:fit-content;
 }
 .service-link::after{content:'→';transition:transform .2s}
-.service-link:hover{color:var(--blush)}
-.service-link:hover::after{transform:translateX(4px)}
-.services-quote {
+.service-link:hover{color:var(--blush);gap:.7rem}
+.service-link:hover::after{transform:translateX(3px)}
+.services-quote{
   text-align:center;margin-top:2.5rem;
   font-size:.88rem;font-style:italic;color:var(--ink-mute);
+  max-width:540px;margin-left:auto;margin-right:auto;
+  line-height:1.7;
 }
 
 /* ── COURSES ── */
-.courses-header {
+.courses-header{
   display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem;
+  margin-bottom:2.8rem;flex-wrap:wrap;gap:1.5rem;
 }
-.courses-grid {
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:rgba(255,255,255,.08);
+.courses-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5px;background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;
-  max-width:1080px;
+  max-width:1060px;
 }
-.course-card {
-  padding:2.4rem 2rem;display:flex;flex-direction:column;
+.course-card{
+  padding:2.2rem 1.8rem;display:flex;flex-direction:column;
   background:rgba(255,255,255,.02);
   transition:background .25s;
 }
 .course-card:hover{background:rgba(255,255,255,.06)}
-.course-card.featured {
-  background:rgba(201,169,110,.06);
-  border-color:rgba(201,169,110,.2);
+.course-card.featured{background:rgba(201,169,110,.05)}
+.course-level{
+  font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.55rem;
 }
-.course-level {
-  font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:.6rem;
-}
-.course-name {
+.course-name{
   font-family:'Figtree',sans-serif;
-  font-size:1.35rem;font-weight:700;color:#fff;
-  line-height:1.18;margin-bottom:.8rem;letter-spacing:-.01em;
+  font-size:1.3rem;font-weight:700;color:#fff;
+  line-height:1.18;margin-bottom:.75rem;letter-spacing:-.01em;
 }
-.course-desc{font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.4);flex:1}
-.course-meta {
-  margin-top:1.8rem;padding-top:1.4rem;
+.course-desc{font-size:.83rem;line-height:1.85;color:rgba(255,255,255,.38);flex:1}
+.course-meta{
+  margin-top:1.6rem;padding-top:1.3rem;
   border-top:1px solid rgba(255,255,255,.07);
   display:flex;justify-content:space-between;align-items:center;
 }
-.course-price {
+.course-price{
   font-family:'Figtree',sans-serif;
-  font-size:1.15rem;font-weight:700;color:var(--blush-lt);
+  font-size:1.1rem;font-weight:700;color:var(--blush-lt);
 }
-.course-cta {
-  font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);
-  display:flex;align-items:center;gap:.35rem;
+.course-cta{
+  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+  display:inline-flex;align-items:center;gap:.3rem;
   transition:color .2s;
 }
 .course-cta::after{content:'→';transition:transform .2s}
@@ -388,97 +372,96 @@ nav.scrolled { box-shadow:0 1px 0 rgba(255,255,255,.05); }
 .course-cta:hover::after{transform:translateX(3px)}
 
 /* ── EVENTS ── */
-.events-grid {
+.events-grid{
   display:grid;
   grid-template-columns:1.4fr 1fr 1fr;
-  grid-template-rows:260px 260px;
   gap:1.5px;background:var(--line);
   border:1px solid var(--line);border-radius:12px;overflow:hidden;
 }
-.event-photo{overflow:hidden;position:relative}
-.event-photo img {
+.event-photo{overflow:hidden;position:relative;aspect-ratio:4/3}
+.event-photo:first-child{aspect-ratio:auto;grid-row:1/3}
+.event-photo:first-child img{height:100%}
+.event-photo img{
   width:100%;height:100%;object-fit:cover;
   transition:transform .7s cubic-bezier(.25,.46,.45,.94);display:block;
 }
 .event-photo:hover img{transform:scale(1.05)}
-.event-photo:first-child{grid-row:1/3}
-.event-label {
+.event-label{
   position:absolute;bottom:0;left:0;right:0;
-  padding:.7rem 1rem;
-  background:linear-gradient(to top,rgba(13,17,23,.85) 0%,transparent 100%);
-  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.5);
+  padding:.65rem .9rem;
+  background:linear-gradient(to top,rgba(13,17,23,.9) 0%,transparent 100%);
+  font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
 }
-.events-quote {
+.events-quote{
   font-family:'Figtree',sans-serif;
-  font-size:clamp(1.2rem,2.2vw,1.75rem);font-style:italic;font-weight:300;
-  color:var(--ink-soft);max-width:640px;
-  line-height:1.65;margin-bottom:3.5rem;
-  padding-left:1.8rem;
+  font-size:clamp(1.1rem,2vw,1.6rem);font-style:italic;font-weight:300;
+  color:var(--ink-soft);max-width:600px;
+  line-height:1.65;margin-bottom:3rem;
+  padding-left:1.6rem;
   border-left:2px solid var(--blush);
 }
 
 /* ── BOOKS ── */
-.books-grid {
-  display:grid;grid-template-columns:1fr 1fr;gap:1.5px;
-  background:var(--line);border:1px solid var(--line);
-  border-radius:12px;overflow:hidden;max-width:1080px;margin:0 auto;
+.books-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5px;background:var(--line);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  max-width:1060px;margin:0 auto;
 }
 .book-card{
-  background:var(--ivory);padding:3rem 2.5rem;
-  display:grid;grid-template-columns:160px 1fr;gap:2.5rem;
+  background:var(--ivory);padding:2.8rem 2.4rem;
+  display:grid;grid-template-columns:150px 1fr;gap:2.2rem;
   align-items:start;transition:background .2s;
 }
 .book-card:hover{background:#fff}
 .book-cover{
   aspect-ratio:2/3;overflow:hidden;border-radius:8px;
-  box-shadow:0 12px 40px rgba(0,0,0,.14);
+  box-shadow:0 12px 36px rgba(0,0,0,.14);
 }
 .book-cover img{width:100%;height:100%;object-fit:cover}
 .book-cover-placeholder{
-  width:100%;height:100%;min-height:200px;
+  width:100%;height:100%;min-height:190px;
   background:linear-gradient(135deg,var(--dark) 0%,var(--dark-3) 100%);
-  display:flex;align-items:center;justify-content:center;
-  padding:1.2rem;
+  display:flex;align-items:center;justify-content:center;padding:1rem;
 }
 .book-cover-placeholder span{
   font-family:'Figtree',sans-serif;
-  font-size:.85rem;color:rgba(255,255,255,.25);
+  font-size:.82rem;color:rgba(255,255,255,.22);
   text-align:center;line-height:1.6;
 }
-.book-pub{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blush);margin-bottom:.6rem}
+.book-pub{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blush);margin-bottom:.55rem}
 .book-title{
   font-family:'Figtree',sans-serif;
-  font-size:1.5rem;font-weight:700;line-height:1.15;
-  color:var(--ink);margin-bottom:.9rem;letter-spacing:-.01em;
+  font-size:1.4rem;font-weight:700;line-height:1.15;
+  color:var(--ink);margin-bottom:.8rem;letter-spacing:-.01em;
 }
-.book-desc{font-size:.85rem;line-height:1.9;color:var(--ink-soft);margin-bottom:1.6rem}
-.book-link {
-  display:inline-flex;align-items:center;gap:.5rem;
-  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);
-  padding-bottom:.18rem;border-bottom:1px solid currentColor;
+.book-desc{font-size:.84rem;line-height:1.9;color:var(--ink-soft);margin-bottom:1.4rem}
+.book-link{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);border-bottom:1px solid currentColor;padding-bottom:.15rem;
   transition:color .2s;width:fit-content;
 }
 .book-link::after{content:'→';transition:transform .2s}
 .book-link:hover{color:var(--blush)}
-.book-link:hover::after{transform:translateX(4px)}
+.book-link:hover::after{transform:translateX(3px)}
 
 /* ── FAQ ── */
-.faq-list{max-width:680px;margin:0 auto}
+.faq-list{max-width:660px;margin:0 auto}
 .faq-item{border-bottom:1px solid rgba(255,255,255,.07)}
-.faq-q {
+.faq-q{
   width:100%;display:flex;justify-content:space-between;align-items:center;
-  padding:1.5rem 0;cursor:pointer;
-  font-size:.97rem;font-weight:400;color:#fff;
-  background:none;border:none;text-align:left;gap:2rem;
+  padding:1.4rem 0;cursor:pointer;
+  font-size:.95rem;font-weight:400;color:#fff;
+  background:none;border:none;text-align:left;gap:1.8rem;
   font-family:'DM Sans',sans-serif;line-height:1.5;
 }
-.faq-toggle {
+.faq-toggle{
   width:22px;height:22px;flex-shrink:0;
   border:1px solid rgba(255,255,255,.18);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:.95rem;color:var(--blush-lt);line-height:1;
+  font-size:.9rem;color:var(--blush-lt);
   transition:transform .3s,border-color .3s,background .3s;
 }
 .faq-item.open .faq-toggle{
@@ -486,119 +469,148 @@ nav.scrolled { box-shadow:0 1px 0 rgba(255,255,255,.05); }
   border-color:var(--blush-lt);
   background:rgba(212,144,159,.08);
 }
-.faq-a {
+.faq-a{
   max-height:0;overflow:hidden;
-  font-size:.88rem;line-height:1.95;color:rgba(255,255,255,.45);
+  font-size:.87rem;line-height:1.95;color:rgba(255,255,255,.42);
   transition:max-height .35s ease,padding .35s;
 }
-.faq-item.open .faq-a{max-height:260px;padding-bottom:1.6rem}
+.faq-item.open .faq-a{max-height:260px;padding-bottom:1.5rem}
 
 /* ── CTA ── */
-#cta {
-  background:var(--dark);padding:8rem 5vw;text-align:center;
+#cta{
+  background:var(--dark);padding:7rem 5vw;text-align:center;
   position:relative;overflow:hidden;
 }
-#cta::before {
+#cta::before{
   content:'';position:absolute;
   bottom:-30%;left:50%;transform:translateX(-50%);
-  width:800px;height:400px;
+  width:700px;height:380px;
   background:radial-gradient(ellipse, rgba(168,92,114,.09) 0%, transparent 70%);
   pointer-events:none;
 }
-#cta .label{margin-bottom:1rem;justify-content:center}
+#cta .label{margin-bottom:.9rem;justify-content:center}
 #cta .label::before{display:none}
 #cta h2{
-  font-size:clamp(2rem,4vw,3.4rem);font-weight:700;letter-spacing:-.02em;
-  line-height:1.1;max-width:560px;margin:0 auto 1rem;color:#fff;
+  font-size:clamp(1.9rem,3.8vw,3.2rem);font-weight:700;letter-spacing:-.02em;
+  line-height:1.1;max-width:520px;margin:0 auto .95rem;color:#fff;
 }
 #cta p{
-  font-size:.95rem;color:rgba(255,255,255,.4);
-  max-width:420px;margin:0 auto 3rem;line-height:1.8;
+  font-size:.93rem;color:rgba(255,255,255,.38);
+  max-width:400px;margin:0 auto 2.8rem;line-height:1.8;
 }
 .cta-form{
-  display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;
-  max-width:440px;margin:0 auto;
+  display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;
+  max-width:420px;margin:0 auto;
 }
-.cta-form input {
-  flex:1;min-width:200px;
-  padding:.82rem 1.4rem;
+.cta-form input{
+  flex:1;min-width:190px;
+  padding:.8rem 1.3rem;
   border:1px solid rgba(255,255,255,.1);border-radius:100px;
-  font-size:.88rem;font-family:'DM Sans',sans-serif;
+  font-size:.86rem;font-family:'DM Sans',sans-serif;
   background:rgba(255,255,255,.05);color:#fff;outline:none;
   transition:border-color .2s,background .2s;
 }
-.cta-form input::placeholder{color:rgba(255,255,255,.3)}
-.cta-form input:focus{border-color:rgba(168,92,114,.6);background:rgba(255,255,255,.08)}
-.cta-form button {
-  padding:.82rem 2rem;
+.cta-form input::placeholder{color:rgba(255,255,255,.28)}
+.cta-form input:focus{border-color:rgba(168,92,114,.55);background:rgba(255,255,255,.08)}
+.cta-form button{
+  padding:.8rem 1.8rem;
   background:var(--blush);color:#fff;
   border:none;border-radius:100px;
-  font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   cursor:pointer;white-space:nowrap;
   transition:background .2s,transform .15s;
 }
 .cta-form button:hover{background:#8f4d62;transform:translateY(-1px)}
 .cta-sub{
-  margin-top:1.2rem;font-size:.72rem;
-  color:rgba(255,255,255,.2);letter-spacing:.04em;
+  margin-top:1rem;font-size:.7rem;
+  color:rgba(255,255,255,.18);letter-spacing:.04em;
 }
 
 /* ── FOOTER ── */
-footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgba(255,255,255,.04)}
-.foot-grid {
+footer{background:var(--dark-2);padding:4.5rem 5vw 2.2rem;border-top:1px solid rgba(255,255,255,.04)}
+.foot-grid{
   display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
-  gap:3rem;margin-bottom:4rem;
+  gap:2.5rem;margin-bottom:3.5rem;
 }
 .foot-brand .logo{
   font-family:'Figtree',sans-serif;
-  font-size:1rem;font-weight:600;letter-spacing:.04em;
-  color:#fff;display:block;margin-bottom:.8rem;
+  font-size:.95rem;font-weight:600;letter-spacing:.04em;
+  color:#fff;display:block;margin-bottom:.7rem;
 }
 .foot-brand .logo em{font-style:normal;color:var(--blush-lt)}
-.foot-brand p{font-size:.8rem;color:rgba(255,255,255,.25);line-height:1.9}
+.foot-brand p{font-size:.78rem;color:rgba(255,255,255,.22);line-height:1.9}
 .foot-col h5{
-  font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.25);margin-bottom:1.2rem;
+  font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.22);margin-bottom:1.1rem;
 }
-.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
-.foot-col a{font-size:.82rem;color:rgba(255,255,255,.35);transition:color .2s}
-.foot-col a:hover{color:rgba(255,255,255,.75)}
-.foot-bottom {
-  border-top:1px solid rgba(255,255,255,.05);padding-top:1.8rem;
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.foot-col a{font-size:.8rem;color:rgba(255,255,255,.32);transition:color .2s}
+.foot-col a:hover{color:rgba(255,255,255,.7)}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.05);padding-top:1.6rem;
   display:flex;justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:1rem;
-  font-size:.72rem;color:rgba(255,255,255,.18);
+  font-size:.7rem;color:rgba(255,255,255,.16);
 }
 
 /* ── UTILITIES ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
 .reveal.on{opacity:1;transform:none}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.center{text-align:center}
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE — TABLET 1024px ── */
 @media(max-width:1024px){
-  #hero{grid-template-columns:1fr;gap:2rem;min-height:auto;padding-bottom:3rem}
-  .hero-photo-wrap{justify-content:flex-start;max-width:380px}
-  .hero-photo-badge{left:-1rem}
-  .hero-content{padding-right:0}
-  .about-grid{grid-template-columns:1fr;gap:3rem;max-width:560px}
-  .about-tag-card{right:.5rem}
+  #hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:96px 5vw 3rem;
+    gap:2.5rem;
+  }
+  .hero-content{max-width:600px}
+  .hero-photo-wrap{justify-content:flex-start}
+  .hero-photo-frame{max-width:340px}
+  .hero-photo-badge{left:-1rem;top:1.2rem}
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:4rem;max-width:500px;
+  }
+  .about-tag-card{right:.5rem;bottom:-.8rem}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .courses-grid{grid-template-columns:1fr 1fr}
+  .books-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .courses-header{flex-direction:column;align-items:flex-start}
+}
+
+/* ── RESPONSIVE — TABLET 768px ── */
+@media(max-width:768px){
+  .section{padding:4rem 5vw}
+  #hero{padding:88px 5vw 2.5rem}
+  .nav-links{display:none}
   .services-grid{grid-template-columns:1fr}
   .courses-grid{grid-template-columns:1fr}
-  .books-grid{grid-template-columns:1fr}
+  .events-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .event-photo:first-child{grid-column:1/-1;grid-row:auto;aspect-ratio:16/9}
+  .events-quote{font-size:1rem}
+  .book-card{grid-template-columns:110px 1fr;gap:1.3rem;padding:1.8rem}
   .foot-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:1.5rem}
 }
-@media(max-width:768px){
-  .nav-links{display:none}
-  .events-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .event-photo:first-child{grid-row:auto;grid-column:1/-1;height:260px}
-  .event-photo:not(:first-child){height:200px}
-  .book-card{grid-template-columns:110px 1fr;gap:1.4rem;padding:1.8rem}
+
+/* ── RESPONSIVE — MOBILE 480px ── */
+@media(max-width:480px){
+  .hero-h1{font-size:2.2rem}
+  .hero-photo-badge{display:none}
+  .books-grid{grid-template-columns:1fr}
+  .book-card{grid-template-columns:1fr;gap:1.2rem}
+  .book-cover{max-width:140px}
   .foot-grid{grid-template-columns:1fr}
-  .section{padding:4.5rem 5vw}
-  #hero{padding:100px 5vw 3rem}
+  .events-grid{grid-template-columns:1fr}
+  .event-photo:first-child{grid-column:auto;aspect-ratio:4/3}
 }
 </style>
 </head>
@@ -625,17 +637,16 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
       <span>AI Consultant · Author · Speaker</span>
     </div>
     <h1 class="hero-h1">
-      Doanh nghiệp không<br>
-      thiếu AI.<br>
-      <span class="accent">Họ thiếu người<br>dùng đúng cách.</span>
+      Doanh nghiệp bạn<br>không thiếu AI.
+      <span class="accent">Họ thiếu người<br>biết dùng đúng cách.</span>
     </h1>
-    <p class="hero-name-line">— Tôn Nữ Xuân Quyên · Founder CoreU AI · Chairman BluSaigon</p>
+    <p class="hero-byline">— Tôn Nữ Xuân Quyên · Founder CoreU AI · Chủ tịch BluSaigon</p>
     <p class="hero-desc">
-      Tôi đưa AI vào vận hành doanh nghiệp của chính mình trước khi bắt đầu dạy người khác. Mọi thứ tôi chia sẻ đều đã được kiểm chứng — không có lý thuyết trống rỗng.
+      Tôi không nói về AI sau khi đọc sách. Tôi triển khai AI cho chính doanh nghiệp của mình trước — cắt 60% chi phí vận hành, tăng gấp đôi năng suất team — rồi mới bắt đầu dạy người khác.
     </p>
     <div class="hero-btns">
       <a href="#services" class="btn-primary">Học cùng tôi</a>
-      <a href="#about" class="btn-ghost">Tìm hiểu thêm</a>
+      <a href="#about" class="btn-ghost">Xem hành trình của tôi</a>
     </div>
     <div class="hero-stats">
       <div>
@@ -661,7 +672,7 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
     <div class="hero-photo-frame">
       <img class="hero-photo-img" src="images/hero.jpg" alt="Tôn Nữ Xuân Quyên" loading="eager"/>
       <div class="hero-photo-badge">
-        <div class="hero-photo-badge-title">L'Officiel · 2026</div>
+        <div class="hero-photo-badge-sup">L'Officiel · 2026</div>
         <div class="hero-photo-badge-text">Women of<br>Our Time</div>
       </div>
     </div>
@@ -672,41 +683,24 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
 <div id="ticker">
   <div class="ticker-track">
     <div class="ticker-item">
-      <span class="ticker-name">Shark Tank Vietnam</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">L'Officiel Vietnam</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">VnExpress</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">CafeBiz</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">Báo Đầu Tư</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">TheLEADER</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">Dân Trí</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">VietnamBiz</span>
-      <span class="ticker-sep"></span>
+      <span class="ticker-name">Shark Tank Vietnam</span><span class="ticker-sep"></span>
+      <span class="ticker-name">L'Officiel Vietnam</span><span class="ticker-sep"></span>
+      <span class="ticker-name">VnExpress</span><span class="ticker-sep"></span>
+      <span class="ticker-name">CafeBiz</span><span class="ticker-sep"></span>
+      <span class="ticker-name">Báo Đầu Tư</span><span class="ticker-sep"></span>
+      <span class="ticker-name">TheLEADER</span><span class="ticker-sep"></span>
+      <span class="ticker-name">Dân Trí</span><span class="ticker-sep"></span>
+      <span class="ticker-name">VietnamBiz</span><span class="ticker-sep"></span>
     </div>
-    <!-- duplicate for seamless loop -->
     <div class="ticker-item" aria-hidden="true">
-      <span class="ticker-name">Shark Tank Vietnam</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">L'Officiel Vietnam</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">VnExpress</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">CafeBiz</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">Báo Đầu Tư</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">TheLEADER</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">Dân Trí</span>
-      <span class="ticker-sep"></span>
-      <span class="ticker-name">VietnamBiz</span>
-      <span class="ticker-sep"></span>
+      <span class="ticker-name">Shark Tank Vietnam</span><span class="ticker-sep"></span>
+      <span class="ticker-name">L'Officiel Vietnam</span><span class="ticker-sep"></span>
+      <span class="ticker-name">VnExpress</span><span class="ticker-sep"></span>
+      <span class="ticker-name">CafeBiz</span><span class="ticker-sep"></span>
+      <span class="ticker-name">Báo Đầu Tư</span><span class="ticker-sep"></span>
+      <span class="ticker-name">TheLEADER</span><span class="ticker-sep"></span>
+      <span class="ticker-name">Dân Trí</span><span class="ticker-sep"></span>
+      <span class="ticker-name">VietnamBiz</span><span class="ticker-sep"></span>
     </div>
   </div>
 </div>
@@ -723,17 +717,19 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
         <div class="about-tag-main">Women of Our Time</div>
       </div>
     </div>
-    <div class="about-content reveal reveal-delay-1">
+    <div class="about-content reveal reveal-d1">
       <span class="label">Về tôi</span>
       <h2>
-        Tôi không dạy lý thuyết.<br>
-        Tôi dạy những gì<br>đã thực sự hoạt động.
+        Tôi xây doanh nghiệp,<br>thất bại, đứng dậy —<br>rồi dùng AI để đi nhanh hơn.
       </h2>
-      <p style="margin-top:1.2rem">
-        Tôi là Tôn Nữ Xuân Quyên — doanh nhân, tác giả và chuyên gia AI ứng dụng. Sau hơn một thập kỷ xây dựng doanh nghiệp từ đầu, tôi đã trực tiếp đưa AI vào vận hành công ty của mình trước khi bắt đầu tư vấn cho người khác.
+      <p style="margin-top:1.1rem">
+        Tôi là Tôn Nữ Xuân Quyên. Trước khi trở thành người dạy AI, tôi là người sáng lập đã tự xây dựng BluSaigon từ con số 0 — trải qua hết thất bại lẫn thành công thật sự. Tôi đưa AI vào vận hành nội bộ của mình trước khi bất kỳ ai hỏi tôi về điều đó.
       </p>
       <p>
-        Là Chủ tịch HĐQT BluSaigon và Founder CoreU AI, tôi hiểu rõ khoảng cách giữa việc "biết về AI" và việc AI thực sự tạo ra giá trị. Đó là khoảng cách tôi giúp bạn thu hẹp — với phương pháp cụ thể, không phải khẩu hiệu.
+        Là Founder CoreU AI, tôi hiểu rõ khoảng cách giữa "biết AI tồn tại" và "AI thực sự tạo ra tiền cho bạn." Mỗi buổi học, mỗi buổi tư vấn — tôi đều bắt đầu từ bài toán thực của bạn, không phải từ slide của tôi.
+      </p>
+      <p>
+        Hiện tôi đang nghiên cứu sinh Tiến sĩ tại Golden Gate University (Mỹ) về ứng dụng AI trong đào tạo và phát triển nguồn nhân lực.
       </p>
       <ul class="cred-list">
         <li>Cử nhân Tài chính — Brigham Young University, USA</li>
@@ -754,43 +750,42 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
   <div class="section-head reveal">
     <span class="label">Học cùng tôi</span>
     <h2 class="section-title">
-      Tôi không dạy AI.<br>
-      Tôi dạy cách dùng AI<br>để thắng trong kinh doanh.
+      Ba con đường —<br>một đích đến: AI làm việc<br>cho bạn, không ngược lại.
     </h2>
     <p class="section-sub">
-      Mọi thứ tôi dạy đều đã được kiểm chứng trên chính doanh nghiệp của mình. Bạn sẽ không nhận được slide đẹp mà trống rỗng.
+      Không phải thêm một khoá học nữa. Đây là con đường ngắn nhất từ điểm bạn đang đứng đến kết quả bạn cần.
     </p>
   </div>
   <div class="services-grid reveal">
     <div class="service-card">
       <div class="service-num">01</div>
-      <div class="service-for">Dành cho người mới bắt đầu</div>
-      <div class="service-name">AI Bắt Đầu<br>Từ Đây</div>
+      <div class="service-for">Cho người chưa biết bắt đầu từ đâu</div>
+      <div class="service-name">Làm Chủ AI<br>Trong 30 Ngày</div>
       <p class="service-desc">
-        Tôi biết cảm giác bị bỏ lại khi mọi người xung quanh nói về AI mà mình không hiểu gì. Khoá này là điểm xuất phát tôi ước mình có từ đầu. Sau 3 buổi đầu tiên, bạn sẽ tiết kiệm được ít nhất 5 giờ làm việc mỗi tuần.
+        Tôi hiểu cảm giác bị bỏ lại khi cả thế giới đang nói về AI. Sau 3 buổi đầu tiên, team một người của bạn sẽ làm được việc của team ba người. Không cần nền tảng kỹ thuật — chỉ cần bắt đầu đúng nơi.
       </p>
       <a href="https://coreu.ai/courses" target="_blank" class="service-link">Xem khoá học</a>
     </div>
     <div class="service-card">
       <div class="service-num">02</div>
-      <div class="service-for">Dành cho chủ doanh nghiệp</div>
-      <div class="service-name">AI cho Người<br>Ra Quyết Định</div>
+      <div class="service-for">Cho chủ doanh nghiệp & lãnh đạo</div>
+      <div class="service-name">AI Playbook<br>Cho Người Ra Quyết Định</div>
       <p class="service-desc">
-        Bạn không cần hiểu kỹ thuật. Bạn cần biết AI có thể làm gì cho doanh nghiệp — và điều gì đang lãng phí chi phí của bạn mỗi ngày. Tôi sẽ ở cạnh bạn qua từng quyết định, không chỉ giao cho bạn một bộ tài liệu.
+        Bạn không cần hiểu kỹ thuật. Bạn cần biết chính xác AI có thể cắt chi phí ở đâu, tăng doanh thu chỗ nào — và triển khai như thế nào mà team không loạn. Tôi đồng hành qua từng quyết định, không giao PDF rồi biến mất.
       </p>
       <a href="https://coreu.ai/courses" target="_blank" class="service-link">Xem khoá học</a>
     </div>
     <div class="service-card">
       <div class="service-num">03</div>
-      <div class="service-for">Dành cho người muốn trở thành chuyên gia</div>
+      <div class="service-for">Cho người muốn xây nghề tư vấn AI</div>
       <div class="service-name">Trở Thành<br>AI Consultant</div>
       <p class="service-desc">
-        Tôi đã làm điều này — xây CoreU AI từ đầu, tư vấn cho hàng chục doanh nghiệp. Và tôi muốn dạy lại đúng những gì thực sự hoạt động. Đây là khoá học tôi trực tiếp đồng hành, không giao cho trợ giảng.
+        Tôi đã xây CoreU AI từ đầu, đồng hành trực tiếp cho hàng chục doanh nghiệp. Tôi dạy lại đúng những gì thực sự hoạt động — từ cách tìm khách đến cách deliver kết quả. Tôi trực tiếp đồng hành, không có trợ giảng thay thế.
       </p>
       <a href="#cta" class="service-link">Nói chuyện với tôi trước</a>
     </div>
   </div>
-  <p class="services-quote reveal">"Bạn không cần thêm một khoá học nữa. Bạn cần đúng người chỉ cho bạn con đường ngắn nhất."</p>
+  <p class="services-quote reveal">"Bạn không cần người dạy AI. Bạn cần người đã đi con đường này và biết chỗ nào nguy hiểm."</p>
 </section>
 
 <!-- COURSES -->
@@ -798,16 +793,16 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
   <div class="courses-header reveal">
     <div>
       <span class="label label-gold">Khoá học tại CoreU AI</span>
-      <h2 class="section-title light">Chọn lộ trình<br>phù hợp với bạn</h2>
-      <p class="section-sub light">Từ khoá học cơ bản đến chương trình toàn diện — ứng dụng ngay, không cần nền tảng kỹ thuật.</p>
+      <h2 class="section-title light">Chọn lộ trình. Bắt đầu hôm nay.</h2>
+      <p class="section-sub light">Ứng dụng được ngay từ buổi học đầu tiên — không cần background kỹ thuật, không cần đợi "hiểu hết."</p>
     </div>
-    <a href="https://coreu.ai/courses" target="_blank" class="btn-ghost" style="color:rgba(255,255,255,.4);white-space:nowrap">Xem tất cả khoá học</a>
+    <a href="https://coreu.ai/courses" target="_blank" class="btn-ghost" style="color:rgba(255,255,255,.35);white-space:nowrap;align-self:flex-start">Xem tất cả →</a>
   </div>
   <div class="courses-grid reveal">
     <div class="course-card">
       <div class="course-level">Khoá học · Thực chiến</div>
       <div class="course-name">Bản Sao AI</div>
-      <p class="course-desc">Tạo ảnh, video, livestream và giọng nói bằng AI mới nhất. 27+ tài liệu thực hành, kết quả thấy ngay từ buổi đầu tiên.</p>
+      <p class="course-desc">Tạo ảnh, video, livestream và giọng nói bằng AI mới nhất. 27+ tài liệu. Buổi đầu tiên bạn đã có sản phẩm để dùng ngay.</p>
       <div class="course-meta">
         <span class="course-price">497.000đ</span>
         <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Đăng ký</a>
@@ -816,7 +811,7 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
     <div class="course-card">
       <div class="course-level">Khoá học · Doanh nhân</div>
       <div class="course-name">Chinh Phục Cá Mập</div>
-      <p class="course-desc">Công thức gọi vốn cho doanh nghiệp kỷ nguyên AI. 16+ tài liệu, 4 giờ học thực chiến từ người đã đứng trên sân khấu Shark Tank.</p>
+      <p class="course-desc">Công thức gọi vốn từ người đã đứng trên sân khấu Shark Tank. 16+ tài liệu, 4 giờ thực chiến. Không có lý thuyết sách vở.</p>
       <div class="course-meta">
         <span class="course-price">497.000đ</span>
         <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Đăng ký</a>
@@ -825,7 +820,7 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
     <div class="course-card featured">
       <div class="course-level" style="color:var(--gold)">Toàn quyền truy cập · Trọn đời</div>
       <div class="course-name">CoreU University</div>
-      <p class="course-desc">Tất cả khoá học hiện tại và tương lai. 200+ tài liệu, cập nhật vĩnh viễn. Dành cho người muốn đi dài trong hành trình AI.</p>
+      <p class="course-desc">Tất cả khoá học hiện tại và tương lai. 200+ tài liệu, cập nhật vĩnh viễn. Dành cho người chọn đầu tư một lần, học cả đời.</p>
       <div class="course-meta">
         <span class="course-price" style="color:var(--gold)">35.000.000đ</span>
         <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Tìm hiểu</a>
@@ -837,11 +832,11 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
 <!-- EVENTS -->
 <section id="events" class="section section-white">
   <div class="section-head reveal">
-    <span class="label">Hoạt động</span>
-    <h2 class="section-title">Những nơi tôi<br>đã được mời chia sẻ</h2>
+    <span class="label">Sự kiện</span>
+    <h2 class="section-title">Những nơi tôi đã<br>được mời chia sẻ</h2>
   </div>
   <blockquote class="events-quote reveal">
-    "Tôi nhận lời chia sẻ tại các sự kiện phù hợp với giá trị và lĩnh vực tôi theo đuổi — nơi câu chuyện thật có thể tạo ra thay đổi thật."
+    "Tôi chỉ nhận lời ở những sự kiện mà câu chuyện thật của mình có thể tạo ra thay đổi thật. Không có buổi diễn nào."
   </blockquote>
   <div class="events-grid reveal">
     <div class="event-photo">
@@ -870,9 +865,9 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
 <!-- BOOKS -->
 <section id="books" class="section section-soft">
   <div class="section-head center reveal">
-    <span class="label" style="justify-content:center">Sách</span>
-    <h2 class="section-title">Những gì tôi đã viết ra</h2>
-    <p class="section-sub" style="margin:.8rem auto 0">Trải nghiệm thực chiến, được đúc kết thành từng trang sách.</p>
+    <span class="label label-center" style="justify-content:center">Sách</span>
+    <h2 class="section-title">Những gì tôi đã học được,<br>viết lại cho bạn</h2>
+    <p class="section-sub" style="margin:.8rem auto 0;text-align:center">Không phải lý thuyết tôi đọc ở đâu đó. Là kinh nghiệm tôi trả giá thật để có được.</p>
   </div>
   <div class="books-grid reveal">
     <div class="book-card">
@@ -883,7 +878,7 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
         <div class="book-pub">Alpha Books · 2024</div>
         <h3 class="book-title">Chinh phục<br>Cá Mập</h3>
         <p class="book-desc">
-          Cẩm nang gọi vốn từ người trong cuộc — 3 năm đúc kết, 68 câu hỏi thực chiến, pitch deck template chuyên nghiệp. Dành cho mọi startup đang tìm con đường tiếp cận nhà đầu tư.
+          3 năm chuẩn bị, 1 sân khấu Shark Tank, 68 câu hỏi thực chiến nhà đầu tư thật sự hỏi. Đây là quyển sách tôi ước mình có từ trước khi bước lên sân khấu đó.
         </p>
         <a href="https://shopee.vn/Sách-Chinh-Phục-Cá-Mập-(Alphabooks)-i.1378090862.51854200228" target="_blank" class="book-link">Mua trên Shopee</a>
       </div>
@@ -896,9 +891,9 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
       </div>
       <div>
         <div class="book-pub">Đã phát hành</div>
-        <h3 class="book-title">Hãy kể cho tôi nghe, Madam</h3>
+        <h3 class="book-title">Hãy kể cho tôi nghe,<br>Madam</h3>
         <p class="book-desc">
-          Những câu chuyện chưa kể của một phụ nữ Việt — về gia đình, khởi nghiệp, thất bại và cách đứng dậy bằng chính đôi chân của mình. Một cuốn sách về sự trung thực với chính mình.
+          Những điều tôi học được khi mọi thứ không theo kế hoạch — về gia đình, về khởi nghiệp, về việc đứng dậy lần thứ n. Cuốn sách này tôi viết không phải để truyền cảm hứng. Tôi viết vì nó là thật.
         </p>
         <a href="https://www.fahasa.com/hay-ke-cho-toi-nghe-di-madam.html" target="_blank" class="book-link">Mua tại Fahasa</a>
       </div>
@@ -909,65 +904,65 @@ footer{background:var(--dark-2);padding:5rem 5vw 2.5rem;border-top:1px solid rgb
 <!-- FAQ -->
 <section id="faq" class="section section-dark">
   <div class="section-head center reveal">
-    <span class="label" style="justify-content:center">FAQ</span>
-    <h2 class="section-title light">Câu hỏi thường gặp</h2>
+    <span class="label label-center" style="justify-content:center">FAQ</span>
+    <h2 class="section-title light">Bạn đang phân vân?<br>Tôi đã nghe câu hỏi này rồi.</h2>
   </div>
   <div class="faq-list reveal">
     <div class="faq-item">
       <button class="faq-q">
-        <span>Tôi chưa biết gì về AI — có phù hợp không?</span>
+        <span>Tôi chưa biết gì về AI — có bắt đầu được không?</span>
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-a">Hoàn toàn phù hợp. Thực ra đây là thời điểm lý tưởng nhất để bắt đầu đúng hướng. Các khoá học của tôi được thiết kế không cần nền tảng kỹ thuật — chỉ cần bạn có nhu cầu thực và sẵn sàng thực hành.</div>
+      <div class="faq-a">Hoàn toàn có thể. Thực ra đây là thời điểm lý tưởng để bắt đầu đúng hướng — trước khi học sai cách. Các khoá học của tôi không yêu cầu nền tảng kỹ thuật. Chỉ cần bạn có bài toán thực và sẵn sàng thực hành từ buổi đầu tiên.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q">
-        <span>Workshop kéo dài bao lâu và tổ chức thế nào?</span>
+        <span>Workshop cho doanh nghiệp tổ chức thế nào?</span>
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-a">Workshop nội bộ cho doanh nghiệp thường kéo dài từ nửa ngày đến 2 ngày, tuỳ chủ đề và độ sâu. Nội dung được thiết kế riêng theo ngành và use case thực tế của từng đơn vị — không dùng slide template chung.</div>
+      <div class="faq-a">Thường từ nửa ngày đến 2 ngày, tuỳ chủ đề và độ sâu. Toàn bộ nội dung được thiết kế riêng dựa trên ngành và bài toán thực của đơn vị bạn — không dùng slide template chung. Tôi cần hiểu doanh nghiệp của bạn trước khi thiết kế chương trình.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q">
-        <span>Sự khác biệt giữa khoá học online và tư vấn trực tiếp?</span>
+        <span>Khoá học online và tư vấn trực tiếp khác nhau thế nào?</span>
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-a">Khoá học online giúp bạn xây nền tảng theo lộ trình có cấu trúc, học được ở bất kỳ đâu. Tư vấn trực tiếp dành cho doanh nghiệp cần giải quyết vấn đề cụ thể và cần tôi đồng hành trong quá trình triển khai thực tế.</div>
+      <div class="faq-a">Khoá học online phù hợp để xây nền tảng — học theo lộ trình, tự điều chỉnh tốc độ, học bất kỳ lúc nào. Tư vấn trực tiếp dành cho doanh nghiệp cần giải quyết vấn đề cụ thể ngay bây giờ và cần tôi đồng hành trong quá trình triển khai thực tế — từ quyết định đến kết quả.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q">
-        <span>Doanh nghiệp nhỏ có cần chiến lược AI không?</span>
+        <span>Doanh nghiệp nhỏ cũng cần chiến lược AI không?</span>
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-a">Đặc biệt cần. Doanh nghiệp nhỏ không có nguồn lực lãng phí — nên càng cần chọn đúng công cụ, đúng thứ tự. AI có thể giúp một team nhỏ làm được việc của một team lớn hơn nhiều nếu được ứng dụng đúng cách.</div>
+      <div class="faq-a">Đặc biệt cần — vì bạn không có nguồn lực để thử sai. AI đúng cách có thể giúp team 3 người làm việc hiệu quả như team 8 người. Doanh nghiệp nhỏ không cần ít AI hơn, họ cần AI được chọn đúng và triển khai đúng thứ tự hơn.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q">
-        <span>Sau khi học xong, đội ngũ tôi có tự làm được không?</span>
+        <span>Học xong, team của tôi có tự làm được không?</span>
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-a">Đó là mục tiêu của tôi. Tôi không muốn bạn phụ thuộc vào tôi mãi mãi. Mỗi khoá học đều hướng đến việc đội ngũ của bạn có thể tự vận hành, tự cải tiến và tự phát triển tiếp sau khi chương trình kết thúc.</div>
+      <div class="faq-a">Đó là tiêu chí tôi đo thành công của mỗi chương trình. Mục tiêu không phải là bạn cần tôi mãi mãi — mà là khi chương trình kết thúc, team của bạn có thể tự vận hành, tự cải tiến, và tự phát triển tiếp mà không cần hỏi tôi từng bước nhỏ.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q">
-        <span>Làm thế nào để bắt đầu?</span>
+        <span>Làm thế nào để bắt đầu làm việc với tôi?</span>
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-a">Cách đơn giản nhất: để lại email bên dưới và mô tả ngắn về nhu cầu của bạn. Tôi sẽ phản hồi trong vòng 24 giờ làm việc để sắp xếp buổi trò chuyện khám phá miễn phí 30 phút.</div>
+      <div class="faq-a">Để lại email và mô tả ngắn bài toán của bạn. Tôi sẽ phản hồi trong vòng 24 giờ làm việc để sắp xếp 30 phút nói chuyện — không phải để bán hàng, mà để tôi hiểu bạn đang đứng ở đâu và con đường ngắn nhất cho bạn là gì.</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section id="cta">
-  <span class="label">Bắt đầu</span>
-  <h2>Sẵn sàng để AI<br>làm việc cho bạn?</h2>
-  <p>Đặt buổi trò chuyện khám phá 30 phút — miễn phí, không cam kết. Chỉ là một cuộc trò chuyện thật.</p>
+  <span class="label" style="justify-content:center">Bắt đầu</span>
+  <h2>30 phút. Tôi sẽ chỉ cho bạn thấy khoảng cách — và cách rút ngắn nó.</h2>
+  <p>Không cần chuẩn bị gì cả. Chỉ cần đến với bài toán thật của bạn.</p>
   <div class="cta-form">
     <input type="email" placeholder="Email của bạn"/>
-    <button type="button">Gửi →</button>
+    <button type="button">Đặt lịch →</button>
   </div>
-  <p class="cta-sub">Phản hồi trong vòng 24 giờ làm việc · Không spam</p>
+  <p class="cta-sub">Phản hồi trong 24 giờ làm việc · Hoàn toàn miễn phí</p>
 </section>
 
 <!-- FOOTER -->
@@ -1020,7 +1015,7 @@ window.addEventListener('scroll', () => {
 // Reveal on scroll
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on') });
-}, {threshold:.06, rootMargin:'0px 0px -40px 0px'});
+}, {threshold:.05, rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // FAQ
