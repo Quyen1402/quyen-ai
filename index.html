@@ -1,50 +1,49 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Tôn Nữ Xuân Quyên — AI Consultant · Author · Speaker</title>
-<meta name="description" content="Chủ tịch BluSaigon · Founder CoreU AI · Tác giả · Nghiên cứu sinh Tiến sĩ AI tại Golden Gate University"/>
+<title>Ton Nu Xuan Quyen — AI Consultant · Author · Speaker</title>
+<meta name="description" content="Founder CoreU AI · Chairman BluSaigon · Author · PhD Candidate at Golden Gate University"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-/* ─────────────── TOKENS ─────────────── */
-:root {
-  --cream:     #fdf9f3;
-  --cream-2:   #f7f0e6;
-  --cream-3:   #ede4d8;
-  --ink:       #1c1712;
-  --ink-2:     #4a4035;
-  --ink-3:     #8a7d6e;
-  --blush:     #a85c72;
-  --blush-lt:  #d4909f;
-  --blush-pale:#fdf0f2;
-  --gold:      #c9a96e;
-  --dark:      #1c1712;
-  --dark-2:    #261f17;
-  --line:      rgba(28,23,18,.1);
-  --line-warm: rgba(201,169,110,.25);
+/* ── TOKENS ── */
+:root{
+  --cream:    #fdf9f3;
+  --cream-2:  #f7f0e6;
+  --cream-3:  #ede4d8;
+  --ink:      #1a1612;
+  --ink-2:    #4a4035;
+  --ink-3:    #8a7d6e;
+  --blush:    #a85c72;
+  --blush-lt: #d4909f;
+  --gold:     #c9a96e;
+  --dark:     #1a1612;
+  --dark-2:   #231c14;
+  --line:     rgba(26,22,18,.1);
 }
 
-/* ─────────────── RESET ─────────────── */
+/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
 body{
-  font-family:'DM Sans',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--cream);color:var(--ink);
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,h4{
-  font-family:'DM Serif Display',serif;
-  font-weight:400;line-height:1.1;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;line-height:1.08;
 }
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%;height:auto}
 
-/* ─────────────── NAV ─────────────── */
+/* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  height:60px;padding:0 5vw;
+  height:62px;padding:0 5vw;
   display:flex;align-items:center;justify-content:space-between;
   transition:background .4s,box-shadow .4s;
 }
@@ -54,45 +53,49 @@ nav.scrolled{
   box-shadow:0 1px 0 var(--line);
 }
 .nav-logo{
-  font-family:'DM Serif Display',serif;
-  font-size:1rem;font-weight:600;letter-spacing:.03em;color:var(--ink);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:500;letter-spacing:.06em;
+  color:#fff;
 }
-.nav-logo em{font-style:italic;color:var(--blush)}
-.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+nav.scrolled .nav-logo{color:var(--ink)}
+.nav-logo em{font-style:italic;color:var(--blush-lt)}
+nav.scrolled .nav-logo em{color:var(--blush)}
+.nav-links{display:flex;align-items:center;gap:2.2rem;list-style:none}
 .nav-links a{
-  font-size:.73rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-2);transition:color .2s;
+  font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);transition:color .2s;
 }
-.nav-links a:hover{color:var(--blush)}
+nav.scrolled .nav-links a{color:var(--ink-2)}
+.nav-links a:hover{color:#fff}
+nav.scrolled .nav-links a:hover{color:var(--blush)}
 .nav-cta{
-  padding:.4rem 1.15rem;border:1px solid var(--blush);
-  border-radius:100px;color:var(--blush)!important;
-  transition:background .2s,color .2s!important;
+  padding:.38rem 1.1rem;border:1px solid rgba(255,255,255,.3);
+  border-radius:100px;color:#fff!important;
+  transition:background .2s,border-color .2s!important;
 }
-.nav-cta:hover{background:var(--blush);color:#fff!important}
+nav.scrolled .nav-cta{border-color:var(--blush)!important;color:var(--blush)!important}
+.nav-cta:hover{background:var(--blush);border-color:var(--blush)!important;color:#fff!important}
 
-/* ─────────────── HERO ─────────────── */
+/* ── HERO ── */
 #hero{
   min-height:100vh;
   background:var(--dark);
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
 }
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-}
+.hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{
   width:100%;height:100%;object-fit:cover;
-  object-position:center top;
-  filter:brightness(.35) saturate(.8);
+  object-position:center 20%;
+  filter:brightness(.3) saturate(.7);
 }
 .hero-bg::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(28,23,18,.3) 0%,
-    rgba(28,23,18,.5) 60%,
-    rgba(28,23,18,.95) 100%
+    rgba(26,22,18,.2) 0%,
+    rgba(26,22,18,.45) 55%,
+    rgba(26,22,18,.96) 100%
   );
 }
 .hero-inner{
@@ -100,134 +103,136 @@ nav.scrolled{
   display:flex;flex-direction:column;
   justify-content:flex-end;
   min-height:100vh;
-  padding:0 6vw 5rem;
-  max-width:900px;
+  padding:0 6vw 5.5rem;
+  max-width:960px;
 }
 .hero-kicker{
-  display:inline-flex;align-items:center;gap:.65rem;
-  margin-bottom:1.8rem;
+  display:inline-flex;align-items:center;gap:.7rem;
+  margin-bottom:2rem;
 }
-.hero-kicker-dot{
-  width:6px;height:6px;border-radius:50%;
+.hero-dot{
+  width:5px;height:5px;border-radius:50%;
   background:var(--blush-lt);
-  animation:blink 2.5s ease infinite;
+  animation:pulse 2.5s ease infinite;
 }
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 .hero-kicker span{
-  font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);
+  font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
 }
 .hero-h1{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2.8rem,5.5vw,5.2rem);
-  font-weight:400;line-height:1.05;
-  color:#fff;margin-bottom:1.4rem;
-  letter-spacing:-.01em;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,6.5vw,6rem);
+  font-weight:400;line-height:1.02;
+  color:#fff;letter-spacing:-.01em;
+  margin-bottom:.5rem;
 }
 .hero-h1 em{
-  font-style:italic;color:var(--blush-lt);display:block;
-  font-weight:400;
+  font-style:italic;color:var(--blush-lt);
+  display:block;font-weight:300;
 }
 .hero-tagline{
-  font-size:clamp(1rem,1.6vw,1.2rem);
-  color:rgba(255,255,255,.45);
-  line-height:1.8;max-width:560px;
-  margin-bottom:2.8rem;
+  font-size:.95rem;font-weight:300;
+  color:rgba(255,255,255,.5);
+  line-height:1.85;max-width:520px;
+  margin-top:1rem;margin-bottom:2.8rem;
+  letter-spacing:.01em;
 }
-.hero-btns{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-bottom:3.5rem}
-.btn-warm{
-  padding:.78rem 2rem;
+.hero-btns{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-bottom:3.8rem}
+.btn-primary{
+  padding:.74rem 2rem;
   background:var(--blush);color:#fff;
-  font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
   border:none;border-radius:100px;cursor:pointer;
   transition:background .2s,transform .15s;display:inline-block;
 }
-.btn-warm:hover{background:#8f4d62;transform:translateY(-1px)}
-.btn-outline{
-  font-size:.76rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);
-  border:1px solid rgba(255,255,255,.2);
-  padding:.76rem 1.8rem;border-radius:100px;
+.btn-primary:hover{background:#8f4d62;transform:translateY(-1px)}
+.btn-ghost{
+  font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+  border:1px solid rgba(255,255,255,.18);
+  padding:.72rem 1.7rem;border-radius:100px;
   transition:border-color .2s,color .2s;display:inline-block;
 }
-.btn-outline:hover{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.8)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);color:rgba(255,255,255,.8)}
 .hero-stats{
   display:flex;gap:0;
   border-top:1px solid rgba(255,255,255,.1);
-  padding-top:2rem;
-  flex-wrap:wrap;
+  padding-top:2.2rem;flex-wrap:wrap;
 }
 .h-stat{
-  padding-right:2.5rem;
+  padding-right:2.8rem;margin-right:2.8rem;
   border-right:1px solid rgba(255,255,255,.08);
-  margin-right:2.5rem;
 }
 .h-stat:last-child{border-right:none;margin-right:0;padding-right:0}
 .h-stat-n{
-  font-family:'DM Serif Display',serif;
-  font-size:2.4rem;font-weight:400;color:#fff;line-height:1;
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:400;color:#fff;line-height:1;
 }
-.h-stat-l{font-size:.7rem;color:rgba(255,255,255,.3);margin-top:.2rem;letter-spacing:.04em}
+.h-stat-l{
+  font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.28);margin-top:.3rem;
+}
 
-/* ─────────────── TICKER ─────────────── */
+/* ── TICKER ── */
 #ticker{
   background:var(--cream-2);
-  padding:.8rem 0;
+  padding:.85rem 0;
   border-bottom:1px solid var(--line);
   overflow:hidden;
 }
 .ticker-track{
-  display:flex;animation:scroll 30s linear infinite;
+  display:flex;animation:ticker 32s linear infinite;
   width:max-content;
 }
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{
-  display:flex;align-items:center;gap:2rem;
-  padding:0 2rem;white-space:nowrap;
+  display:flex;align-items:center;gap:2.2rem;
+  padding:0 2.2rem;white-space:nowrap;
 }
 .ticker-name{
-  font-size:.72rem;font-weight:500;letter-spacing:.08em;
-  color:var(--ink-3);
+  font-size:.66rem;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);
 }
 .ticker-sep{
   width:3px;height:3px;border-radius:50%;
   background:var(--blush-lt);opacity:.5;flex-shrink:0;
 }
 
-/* ─────────────── SHARED ─────────────── */
-.section{padding:6rem 6vw}
+/* ── SECTIONS ── */
+.section{padding:6.5rem 6vw}
 .s-warm{background:var(--cream)}
 .s-cream{background:var(--cream-2)}
 .s-dark{background:var(--dark);color:#fff}
 
-/* Editorial section label */
 .kicker{
-  font-size:.63rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--blush);display:flex;align-items:center;gap:.6rem;
-  margin-bottom:1rem;
+  font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--blush);display:flex;align-items:center;gap:.65rem;
+  margin-bottom:1.1rem;
 }
-.kicker::before{content:'';width:20px;height:1px;background:var(--blush);opacity:.6}
+.kicker::before{content:'';width:22px;height:1px;background:var(--blush);opacity:.55}
 .kicker-center{justify-content:center}
 .kicker-center::before{display:none}
-.kicker-dark{color:var(--gold)}
-.kicker-dark::before{background:var(--gold)}
+.kicker-gold{color:var(--gold)}
+.kicker-gold::before{background:var(--gold)}
 
 .s-title{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,3.5vw,3.2rem);font-weight:400;
-  line-height:1.1;letter-spacing:-.01em;color:var(--ink);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,3.8vw,3.6rem);font-weight:400;
+  line-height:1.08;letter-spacing:-.005em;
 }
+.s-title.on-cream{color:var(--ink)}
+.s-title.on-dark{color:#fff}
 .s-title em{font-style:italic;color:var(--blush)}
-.s-title.light{color:#fff}
-.s-title.light em{font-style:italic;color:var(--blush-lt)}
+.s-title .gold{color:var(--gold)}
 .s-sub{
-  font-size:.95rem;line-height:1.9;
-  color:var(--ink-2);max-width:500px;margin-top:.8rem;
+  font-size:.92rem;font-weight:300;line-height:1.95;
+  color:var(--ink-2);max-width:500px;margin-top:.9rem;letter-spacing:.01em;
 }
-.s-sub.light{color:rgba(255,255,255,.45)}
-.s-head{margin-bottom:4rem}
+.s-sub.on-dark{color:rgba(255,255,255,.45)}
+.s-head{margin-bottom:4.5rem}
 
-/* ─────────────── PROFILE STRIP ─────────────── */
+/* ── PROFILE ── */
 #profile{
   background:var(--cream-2);
   border-bottom:1px solid var(--line);
@@ -237,165 +242,170 @@ nav.scrolled{
   max-width:1200px;margin:0 auto;
   min-height:640px;
 }
-.profile-photo{
-  position:relative;overflow:hidden;
-}
+.profile-photo{position:relative;overflow:hidden}
 .profile-photo img{
   width:100%;height:100%;object-fit:cover;
   object-position:top center;
-  transition:transform .8s ease;
+  transition:transform .9s ease;
 }
 .profile-photo:hover img{transform:scale(1.03)}
 .profile-content{
-  padding:4rem 4.5rem;
+  padding:4.5rem 5rem;
   display:flex;flex-direction:column;justify-content:center;
   background:var(--cream);
 }
 .profile-content h2{
-  font-size:clamp(1.9rem,2.8vw,2.7rem);
-  margin-bottom:1.2rem;line-height:1.15;
-}
-.profile-content p{
-  font-size:.93rem;line-height:2.05;
-  color:var(--ink-2);margin-bottom:1rem;
+  font-size:clamp(2rem,2.8vw,2.8rem);
+  margin-bottom:1rem;line-height:1.1;
 }
 .profile-pull{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(1.1rem,1.8vw,1.5rem);
-  font-weight:300;color:var(--blush);
-  line-height:1.6;
-  border-left:3px solid var(--blush);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.15rem,1.6vw,1.5rem);
+  font-style:italic;font-weight:300;color:var(--blush);
+  line-height:1.65;
+  border-left:1px solid var(--blush);
   padding-left:1.5rem;
-  margin:2rem 0;
+  margin:1.8rem 0;
 }
-.cred-row{
-  display:flex;flex-direction:column;gap:0;
-  margin-top:1.5rem;
+.profile-p{
+  font-size:.9rem;font-weight:300;line-height:2.05;
+  color:var(--ink-2);margin-bottom:.9rem;letter-spacing:.01em;
 }
-.cred-item{
-  display:flex;align-items:flex-start;gap:.8rem;
-  font-size:.82rem;color:var(--ink-2);line-height:1.6;
-  padding:.42rem 0;border-bottom:1px solid var(--line);
+.cred-list{
+  margin-top:1.8rem;list-style:none;
+  border-top:1px solid var(--line);
 }
-.cred-item:last-child{border-bottom:none}
-.cred-item::before{
-  content:'';width:12px;height:1px;background:var(--blush);
-  flex-shrink:0;margin-top:.65rem;
+.cred-list li{
+  display:flex;align-items:baseline;gap:.9rem;
+  padding:.5rem 0;border-bottom:1px solid var(--line);
+  font-size:.78rem;font-weight:400;color:var(--ink-3);line-height:1.5;
+  letter-spacing:.01em;
+}
+.cred-list li:last-child{border-bottom:none}
+.cred-list li::before{
+  content:'—';color:var(--gold);opacity:.7;flex-shrink:0;font-size:.7rem;
 }
 
-/* ─────────────── SERVICES ─────────────── */
-.services-editorial{
-  max-width:1060px;margin:0 auto;
+/* ── SERVICES ── */
+.services-wrap{max-width:1060px;margin:0 auto}
+.services-list{
   display:flex;flex-direction:column;gap:1px;
-  background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;
 }
-.service-row{
-  display:grid;grid-template-columns:72px 1fr 160px;
+.svc-row{
+  display:grid;grid-template-columns:80px 1fr 180px;
   align-items:center;gap:2.5rem;
-  background:var(--cream);padding:2.8rem 3rem;
+  background:var(--cream);padding:3rem 3.5rem;
   transition:background .25s;
 }
-.service-row:hover{background:#fff}
-/* inline link = mobile only */
-.service-link-mobile{display:none}
-.service-num{
-  font-family:'DM Serif Display',serif;
-  font-size:3rem;font-weight:400;
+.svc-row:hover{background:#fff}
+.svc-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.5rem;font-style:italic;font-weight:300;
   color:var(--cream-3);line-height:1;
-  font-style:italic;
 }
-.service-action{text-align:right}
-.service-body{}
-.service-tag{
-  font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--blush);margin-bottom:.5rem;
+.svc-body{}
+.svc-for{
+  font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--blush);margin-bottom:.55rem;
 }
-.service-name{
-  font-family:'DM Serif Display',serif;
-  font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:.7rem;line-height:1.15;letter-spacing:-.01em;
+.svc-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:400;color:var(--ink);
+  margin-bottom:.7rem;line-height:1.15;
 }
-.service-desc{font-size:.88rem;line-height:1.95;color:var(--ink-2);max-width:540px}
-.service-action{
-  align-self:center;flex-shrink:0;
+.svc-desc{
+  font-size:.85rem;font-weight:300;line-height:2;
+  color:var(--ink-2);max-width:540px;letter-spacing:.01em;
 }
-.service-link{
+.svc-action{text-align:right}
+.svc-link{
   display:inline-flex;align-items:center;gap:.5rem;
-  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);border-bottom:1px solid currentColor;padding-bottom:.15rem;
-  transition:color .2s;white-space:nowrap;
+  font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);
+  border-bottom:1px solid rgba(26,22,18,.2);padding-bottom:.15rem;
+  transition:color .2s,border-color .2s;white-space:nowrap;
 }
-.service-link::after{content:'→';transition:transform .2s}
-.service-link:hover{color:var(--blush)}
-.service-link:hover::after{transform:translateX(4px)}
-.services-footer{
-  max-width:1060px;margin:2.5rem auto 0;
-  font-family:'DM Serif Display',serif;
-  font-style:italic;font-size:1.2rem;
-  color:var(--ink-3);text-align:center;line-height:1.7;
+.svc-link::after{content:'→';transition:transform .2s}
+.svc-link:hover{color:var(--blush);border-color:var(--blush)}
+.svc-link:hover::after{transform:translateX(4px)}
+/* mobile-only link */
+.svc-link-m{display:none;margin-top:1.2rem}
+.svc-quote{
+  text-align:center;margin-top:3rem;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.35rem;font-weight:300;
+  color:var(--ink-3);line-height:1.7;
+  max-width:620px;margin-left:auto;margin-right:auto;
 }
 
-/* ─────────────── COURSES ─────────────── */
-.courses-wrap{max-width:1060px;margin:0 auto}
-.courses-header{
+/* ── COURSES ── */
+.courses-hd{
   display:flex;align-items:flex-end;justify-content:space-between;
-  margin-bottom:3rem;flex-wrap:wrap;gap:1rem;
+  margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem;
 }
 .courses-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:1.5px;background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;overflow:hidden;
 }
-.course-card{
+.course{
   padding:2.4rem 2rem;
   background:rgba(255,255,255,.03);
   display:flex;flex-direction:column;
   transition:background .25s;
 }
-.course-card:hover{background:rgba(255,255,255,.07)}
-.course-card.ft{background:rgba(201,169,110,.06)}
+.course:hover{background:rgba(255,255,255,.07)}
+.course.ft{background:rgba(201,169,110,.06)}
 .course-tag{
-  font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:.6rem;
+  font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.65rem;
 }
 .course-name{
-  font-family:'DM Serif Display',serif;
-  font-size:1.4rem;font-weight:400;color:#fff;
-  line-height:1.2;margin-bottom:.8rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.55rem;font-weight:400;color:#fff;
+  line-height:1.18;margin-bottom:.8rem;
 }
-.course-desc{font-size:.84rem;line-height:1.85;color:rgba(255,255,255,.38);flex:1}
+.course-desc{
+  font-size:.82rem;font-weight:300;line-height:1.9;
+  color:rgba(255,255,255,.38);flex:1;letter-spacing:.01em;
+}
 .course-foot{
-  margin-top:1.6rem;padding-top:1.3rem;
+  margin-top:1.8rem;padding-top:1.4rem;
   border-top:1px solid rgba(255,255,255,.07);
   display:flex;justify-content:space-between;align-items:center;
 }
 .course-price{
-  font-family:'DM Serif Display',serif;
-  font-size:1.2rem;color:var(--blush-lt);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:400;color:var(--blush-lt);
 }
 .course-cta{
-  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.4);
+  font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);
   display:inline-flex;align-items:center;gap:.3rem;
   transition:color .2s;
 }
 .course-cta::after{content:'→';transition:transform .2s}
-.course-cta:hover{color:#fff}
+.course-cta:hover{color:rgba(255,255,255,.8)}
 .course-cta:hover::after{transform:translateX(3px)}
 
-/* ─────────────── EVENTS ─────────────── */
-.events-pull{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(1.1rem,2vw,1.7rem);
-  font-style:normal;font-weight:300;
-  color:var(--ink-2);max-width:640px;
-  line-height:1.6;margin-bottom:3.5rem;
-  padding-left:1.8rem;border-left:3px solid var(--blush);
+/* ── EVENTS ── */
+.events-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,2.2vw,1.9rem);
+  font-style:italic;font-weight:300;
+  color:var(--ink-2);max-width:660px;
+  line-height:1.65;margin-bottom:3.5rem;
+  padding-left:1.6rem;border-left:1px solid var(--blush);
 }
 .events-mosaic{
   display:grid;
   grid-template-columns:1.3fr 1fr 1fr;
   grid-template-rows:1fr 1fr;
-  gap:3px;border-radius:20px;overflow:hidden;
+  gap:3px;border-radius:16px;overflow:hidden;
 }
 .ev-photo{overflow:hidden;position:relative;background:var(--cream-3)}
 .ev-photo img{
@@ -408,217 +418,213 @@ nav.scrolled{
 .ev-label{
   position:absolute;bottom:0;left:0;right:0;
   padding:.65rem 1rem;
-  background:linear-gradient(to top,rgba(28,23,18,.85),transparent);
-  font-size:.59rem;letter-spacing:.12em;text-transform:uppercase;
+  background:linear-gradient(to top,rgba(26,22,18,.88),transparent);
+  font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(255,255,255,.5);
 }
 
-/* ─────────────── BOOKS ─────────────── */
-.books-editorial{
+/* ── BOOKS ── */
+.books-grid{
   display:grid;grid-template-columns:1fr 1fr;
   gap:3px;background:var(--line);
-  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;
   max-width:1060px;margin:0 auto;
 }
-.book-feature{
-  background:var(--cream);
-  padding:3.5rem 3rem;
-  display:grid;grid-template-columns:160px 1fr;
-  gap:2.5rem;align-items:start;
+.book{
+  background:var(--cream);padding:3.5rem 3rem;
+  display:grid;grid-template-columns:155px 1fr;
+  gap:2.4rem;align-items:start;
   transition:background .25s;
 }
-.book-feature:hover{background:#fff}
+.book:hover{background:#fff}
 .book-cover{
-  aspect-ratio:2/3;overflow:hidden;border-radius:10px;
-  box-shadow:0 16px 48px rgba(28,23,18,.15);
+  aspect-ratio:2/3;overflow:hidden;
+  border-radius:8px;
+  box-shadow:0 16px 48px rgba(26,22,18,.14);
 }
 .book-cover img{width:100%;height:100%;object-fit:cover}
-.book-cover-ph{
-  width:100%;height:100%;min-height:210px;
-  background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);
-  display:flex;align-items:center;justify-content:center;padding:1.2rem;
-  border-radius:10px;
-}
-.book-cover-ph span{
-  font-family:'DM Serif Display',serif;
-  font-size:.9rem;font-style:italic;color:rgba(255,255,255,.25);
-  text-align:center;line-height:1.6;
-}
-.book-meta{}
 .book-pub{
-  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--blush);margin-bottom:.6rem;
 }
 .book-title{
-  font-family:'DM Serif Display',serif;
-  font-size:1.6rem;font-weight:700;line-height:1.15;letter-spacing:-.01em;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.75rem;font-weight:400;line-height:1.15;
   color:var(--ink);margin-bottom:.9rem;
 }
-.book-desc{font-size:.86rem;line-height:1.95;color:var(--ink-2);margin-bottom:1.5rem}
+.book-desc{
+  font-size:.84rem;font-weight:300;line-height:2;
+  color:var(--ink-2);margin-bottom:1.5rem;letter-spacing:.01em;
+}
 .book-link{
-  display:inline-flex;align-items:center;gap:.45rem;
-  font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink);border-bottom:1px solid currentColor;padding-bottom:.15rem;
-  transition:color .2s;width:fit-content;
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);
+  border-bottom:1px solid rgba(26,22,18,.2);padding-bottom:.15rem;
+  transition:color .2s,border-color .2s;width:fit-content;
 }
 .book-link::after{content:'→';transition:transform .2s}
-.book-link:hover{color:var(--blush)}
+.book-link:hover{color:var(--blush);border-color:var(--blush)}
 .book-link:hover::after{transform:translateX(3px)}
 
-/* ─────────────── FAQ ─────────────── */
+/* ── FAQ ── */
 .faq-wrap{max-width:660px;margin:0 auto}
 .faq-item{border-bottom:1px solid rgba(255,255,255,.07)}
 .faq-btn{
   width:100%;display:flex;justify-content:space-between;align-items:center;
-  padding:1.4rem 0;cursor:pointer;
-  font-size:.95rem;line-height:1.5;color:#fff;
-  background:none;border:none;text-align:left;gap:1.8rem;
-  font-family:'DM Sans',sans-serif;
+  padding:1.5rem 0;cursor:pointer;
+  font-size:.9rem;font-weight:300;letter-spacing:.01em;
+  color:rgba(255,255,255,.75);line-height:1.5;
+  background:none;border:none;text-align:left;gap:2rem;
+  font-family:'Inter',sans-serif;transition:color .2s;
 }
+.faq-btn:hover{color:#fff}
 .faq-icon{
   width:22px;height:22px;flex-shrink:0;
   border:1px solid rgba(255,255,255,.18);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;color:var(--blush-lt);
+  font-size:.88rem;color:var(--blush-lt);
   transition:transform .3s,border-color .3s;
 }
 .faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--blush-lt)}
 .faq-ans{
   max-height:0;overflow:hidden;
-  font-size:.87rem;line-height:1.95;color:rgba(255,255,255,.42);
+  font-size:.85rem;font-weight:300;line-height:2;
+  color:rgba(255,255,255,.4);letter-spacing:.01em;
   transition:max-height .35s ease,padding .35s;
 }
-.faq-item.open .faq-ans{max-height:260px;padding-bottom:1.5rem}
+.faq-item.open .faq-ans{max-height:300px;padding-bottom:1.6rem}
 
-/* ─────────────── CTA ─────────────── */
+/* ── CTA ── */
 #cta{
   background:var(--dark);
-  padding:8rem 6vw;text-align:center;
+  padding:9rem 6vw;text-align:center;
   position:relative;overflow:hidden;
 }
 #cta::before{
   content:'';position:absolute;
   top:50%;left:50%;transform:translate(-50%,-50%);
-  width:600px;height:400px;
-  background:radial-gradient(ellipse, rgba(168,92,114,.09) 0%, transparent 70%);
+  width:700px;height:480px;
+  background:radial-gradient(ellipse, rgba(168,92,114,.08) 0%, transparent 70%);
   pointer-events:none;
 }
 #cta h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,4vw,3.4rem);font-weight:700;letter-spacing:-.02em;
-  line-height:1.1;max-width:560px;
-  margin:0 auto 1rem;color:#fff;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4.5vw,4.2rem);
+  font-weight:400;line-height:1.1;letter-spacing:-.005em;
+  max-width:600px;margin:1.2rem auto;color:#fff;
 }
-#cta h2 em{font-style:normal;font-weight:300;color:var(--blush-lt)}
+#cta h2 em{font-style:italic;color:var(--blush-lt)}
 #cta p{
-  font-size:.93rem;color:rgba(255,255,255,.38);
-  max-width:400px;margin:0 auto 2.8rem;line-height:1.9;
+  font-size:.88rem;font-weight:300;letter-spacing:.01em;
+  color:rgba(255,255,255,.38);
+  max-width:420px;margin:.8rem auto 3rem;line-height:1.95;
 }
 .cta-form{
   display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;
-  max-width:420px;margin:0 auto;
+  max-width:440px;margin:0 auto;
 }
 .cta-form input{
-  flex:1;min-width:190px;
-  padding:.8rem 1.3rem;
+  flex:1;min-width:195px;
+  padding:.82rem 1.4rem;
   border:1px solid rgba(255,255,255,.1);border-radius:100px;
-  font-size:.86rem;font-family:'DM Sans',sans-serif;
+  font-size:.84rem;font-weight:300;font-family:'Inter',sans-serif;
   background:rgba(255,255,255,.05);color:#fff;outline:none;
   transition:border-color .2s,background .2s;
 }
 .cta-form input::placeholder{color:rgba(255,255,255,.25)}
 .cta-form input:focus{border-color:rgba(168,92,114,.5);background:rgba(255,255,255,.08)}
 .cta-form button{
-  padding:.8rem 1.8rem;background:var(--blush);color:#fff;
+  padding:.82rem 1.9rem;background:var(--blush);color:#fff;
   border:none;border-radius:100px;
-  font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
   cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s;
 }
 .cta-form button:hover{background:#8f4d62;transform:translateY(-1px)}
-.cta-note{margin-top:1rem;font-size:.68rem;color:rgba(255,255,255,.18)}
+.cta-note{margin-top:1.1rem;font-size:.66rem;font-weight:400;color:rgba(255,255,255,.2);letter-spacing:.06em}
 
-/* ─────────────── FOOTER ─────────────── */
+/* ── FOOTER ── */
 footer{
-  background:var(--dark-2);
-  padding:4.5rem 6vw 2.2rem;
+  background:var(--dark-2);padding:5rem 6vw 2.5rem;
   border-top:1px solid rgba(255,255,255,.04);
 }
 .foot-grid{
   display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
-  gap:2.5rem;margin-bottom:3.5rem;
+  gap:2.5rem;margin-bottom:4rem;
 }
 .foot-brand .logo{
-  font-family:'DM Serif Display',serif;
-  font-size:1rem;font-weight:600;color:#fff;display:block;margin-bottom:.7rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:400;color:#fff;
+  display:block;margin-bottom:.75rem;letter-spacing:.04em;
 }
 .foot-brand .logo em{font-style:italic;color:var(--blush-lt)}
-.foot-brand p{font-size:.78rem;color:rgba(255,255,255,.22);line-height:1.9}
+.foot-brand p{font-size:.76rem;font-weight:300;color:rgba(255,255,255,.22);line-height:1.95;letter-spacing:.01em}
 .foot-col h5{
-  font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.22);margin-bottom:1.1rem;
+  font-size:.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.22);margin-bottom:1.2rem;
 }
-.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.foot-col a{font-size:.8rem;color:rgba(255,255,255,.32);transition:color .2s}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.foot-col a{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.32);transition:color .2s;letter-spacing:.01em}
 .foot-col a:hover{color:rgba(255,255,255,.7)}
 .foot-bottom{
-  border-top:1px solid rgba(255,255,255,.05);padding-top:1.6rem;
+  border-top:1px solid rgba(255,255,255,.05);padding-top:1.8rem;
   display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:1rem;font-size:.7rem;color:rgba(255,255,255,.18);
+  flex-wrap:wrap;gap:1rem;
+  font-size:.66rem;font-weight:400;color:rgba(255,255,255,.18);letter-spacing:.04em;
 }
 
-/* ─────────────── UTILS ─────────────── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.25,.46,.45,.94),transform .75s cubic-bezier(.25,.46,.45,.94)}
+/* ── UTILS ── */
+.reveal{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .75s cubic-bezier(.25,.46,.45,.94),transform .75s cubic-bezier(.25,.46,.45,.94);
+}
 .reveal.on{opacity:1;transform:none}
-.d1{transition-delay:.1s}
-.d2{transition-delay:.2s}
-.center{text-align:center}
+.d1{transition-delay:.12s}
+.d2{transition-delay:.24s}
 
-/* ─────────────── RESPONSIVE ─────────────── */
-/* 1100px — collapse profile to equal halves, service loses action col */
+/* ── RESPONSIVE ── */
 @media(max-width:1100px){
   .profile-grid{grid-template-columns:1fr 1fr;min-height:auto}
   .profile-content{padding:3.5rem 3rem}
-  .service-row{grid-template-columns:60px 1fr;gap:1.8rem}
-  .service-action{display:none}
-  .service-link-mobile{display:inline-flex;margin-top:1.1rem}
+  .svc-row{grid-template-columns:60px 1fr;gap:1.8rem}
+  .svc-action{display:none}
+  .svc-link-m{display:inline-flex}
 }
-/* 1024px — stack profile, 2-col courses */
 @media(max-width:1024px){
   .profile-grid{grid-template-columns:1fr;min-height:auto}
-  .profile-photo{aspect-ratio:16/9;max-height:520px}
+  .profile-photo{aspect-ratio:16/9;max-height:500px}
   .profile-content{padding:3rem 5vw}
   .courses-grid{grid-template-columns:1fr 1fr}
-  .books-editorial{grid-template-columns:1fr}
+  .books-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
 }
-/* 768px — single column everything */
 @media(max-width:768px){
-  .section{padding:4rem 5vw}
+  .section{padding:4.5rem 5vw}
   nav .nav-links{display:none}
   #hero{min-height:100svh}
-  .hero-inner{padding:0 5vw 3.5rem}
-  .service-row{grid-template-columns:1fr;gap:.8rem;padding:2rem 1.6rem}
-  .service-num{font-size:2rem;margin-bottom:.3rem}
+  .hero-inner{padding:0 5vw 4rem}
+  .svc-row{grid-template-columns:1fr;gap:.6rem;padding:2.2rem 2rem}
+  .svc-num{font-size:2.5rem;margin-bottom:.4rem}
   .courses-grid{grid-template-columns:1fr}
   .events-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .ev-photo:first-child{grid-row:auto;grid-column:1/-1;aspect-ratio:16/9}
   .ev-photo:not(:first-child){aspect-ratio:4/3}
-  .book-feature{grid-template-columns:110px 1fr;gap:1.3rem;padding:1.8rem}
+  .book{grid-template-columns:110px 1fr;gap:1.3rem;padding:2rem}
   .foot-grid{grid-template-columns:1fr}
   .hero-stats{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.5rem}
-  .h-stat{padding-right:1.6rem;margin-right:1.6rem;min-width:max-content}
+  .h-stat{padding-right:2rem;margin-right:2rem;min-width:max-content}
 }
-/* 480px — true mobile */
 @media(max-width:480px){
-  .hero-h1{font-size:2.2rem}
-  .books-editorial{grid-template-columns:1fr}
-  .book-feature{grid-template-columns:1fr;gap:1.2rem}
-  .book-cover{max-width:140px}
+  .hero-h1{font-size:2.6rem}
+  .books-grid{grid-template-columns:1fr}
+  .book{grid-template-columns:1fr}
+  .book-cover{max-width:145px}
   .events-mosaic{grid-template-columns:1fr}
   .ev-photo:first-child{grid-column:auto;aspect-ratio:4/3}
   .foot-grid{grid-template-columns:1fr}
-  .hero-stats{gap:0}
-  .h-stat{padding-right:1.4rem;margin-right:1.4rem}
+  .courses-grid{grid-template-columns:1fr}
+  .h-stat{padding-right:1.6rem;margin-right:1.6rem}
 }
 </style>
 </head>
@@ -626,54 +632,54 @@ footer{
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Tôn Nữ <em>Xuân Quyên</em></a>
+  <a href="#" class="nav-logo">Ton Nu <em>Xuan Quyen</em></a>
   <ul class="nav-links">
-    <li><a href="#profile">Về tôi</a></li>
-    <li><a href="#services">Học cùng tôi</a></li>
-    <li><a href="#events">Sự kiện</a></li>
-    <li><a href="#books">Sách</a></li>
+    <li><a href="#profile">About</a></li>
+    <li><a href="#services">Work With Me</a></li>
+    <li><a href="#events">Speaking</a></li>
+    <li><a href="#books">Books</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#cta" class="nav-cta">Liên hệ</a></li>
+    <li><a href="#cta" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO — full-bleed photo with editorial overlay text -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
     <img src="images/event-stage.jpg" alt="" aria-hidden="true"/>
   </div>
   <div class="hero-inner">
     <div class="hero-kicker">
-      <span class="hero-kicker-dot"></span>
-      <span>Founder CoreU AI · Chủ tịch BluSaigon · PhD Candidate GGU</span>
+      <span class="hero-dot"></span>
+      <span>Founder, CoreU AI · Chairman, BluSaigon · PhD Candidate, GGU</span>
     </div>
     <h1 class="hero-h1">
-      Tôi là Tôn Nữ<br>Xuân Quyên —
-      <em>tôi giúp doanh nghiệp<br>ứng dụng AI<br>vào thực tiễn.</em>
+      I am<br>Ton Nu Xuan Quyen.
+      <em>I help businesses<br>implement AI that<br>actually delivers results.</em>
     </h1>
     <p class="hero-tagline">
-      Tôi đã tự xây dựng doanh nghiệp từ đầu, đưa AI vào vận hành thực tế và thấy kết quả thật — trước khi bắt đầu dạy người khác. Mọi thứ tôi chia sẻ đều xuất phát từ những gì đã hoạt động với chính tôi.
+      Every consulting engagement and training program I design starts from a real business challenge — not from a textbook. I applied AI to my own company first, saw the results, and then began teaching others.
     </p>
     <div class="hero-btns">
-      <a href="#services" class="btn-warm">Học cùng tôi</a>
-      <a href="#profile" class="btn-outline">Xem hành trình của tôi</a>
+      <a href="#services" class="btn-primary">Explore Programs</a>
+      <a href="#profile" class="btn-ghost">My Story</a>
     </div>
     <div class="hero-stats">
       <div class="h-stat">
         <div class="h-stat-n">50+</div>
-        <div class="h-stat-l">Doanh nghiệp tư vấn</div>
+        <div class="h-stat-l">Businesses advised</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">200+</div>
-        <div class="h-stat-l">Học viên đào tạo</div>
+        <div class="h-stat-l">Students trained</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">2</div>
-        <div class="h-stat-l">Cuốn sách xuất bản</div>
+        <div class="h-stat-l">Books published</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">5+</div>
-        <div class="h-stat-l">Năm thực chiến AI</div>
+        <div class="h-stat-l">Years in AI</div>
       </div>
     </div>
   </div>
@@ -705,137 +711,139 @@ footer{
   </div>
 </div>
 
-<!-- PROFILE — magazine editorial split -->
+<!-- PROFILE -->
 <section id="profile">
   <div class="profile-grid">
     <div class="profile-photo reveal">
-      <img src="images/trophy.jpg" alt="Tôn Nữ Xuân Quyên — Women of Our Time 2026" loading="lazy"/>
+      <img src="images/trophy.jpg" alt="Ton Nu Xuan Quyen — L'Officiel Women of Our Time 2026" loading="lazy"/>
     </div>
     <div class="profile-content reveal d1">
-      <span class="kicker">Về tôi</span>
-      <h2>Từ người sáng lập<br>đến chuyên gia AI —<br><span style="font-style:italic;color:var(--blush)">mọi thứ đều xuất phát<br>từ thực tiễn.</span></h2>
-
+      <span class="kicker">About</span>
+      <h2>From founder to<br>AI specialist — everything<br>comes from <em>practice.</em></h2>
       <div class="profile-pull">
-        "Tôi ứng dụng AI vào chính doanh nghiệp của mình trước — thấy kết quả thật — rồi mới bắt đầu chia sẻ với người khác."
+        "I applied AI to my own business first — saw real results — then started sharing what actually works."
       </div>
-
-      <p>Tôi là Tôn Nữ Xuân Quyên — người sáng lập BluSaigon, Founder CoreU AI. Tôi bắt đầu ứng dụng AI vào vận hành doanh nghiệp của mình từ rất sớm, khi đó chưa ai hỏi tôi về điều này. Kết quả thật đó là lý do tôi bắt đầu dạy.</p>
-
-      <p>Là Founder CoreU AI, tôi hiểu rõ sự khác biệt giữa việc biết về AI và việc triển khai AI hiệu quả trong thực tế doanh nghiệp. Mỗi chương trình tôi xây dựng đều bắt đầu từ bài toán thực tế — không phải từ lý thuyết.</p>
-
-      <ul class="cred-row">
-        <li class="cred-item">Cử nhân Tài chính — Brigham Young University, USA</li>
-        <li class="cred-item">Nghiên cứu sinh Tiến sĩ AI — Golden Gate University, USA</li>
-        <li class="cred-item">Shark Tank Vietnam Season 4 · Bông Hồng Vàng 2025</li>
-        <li class="cred-item">Doanh Nhân Trẻ Xuất Sắc 2024 · 2025</li>
-        <li class="cred-item">L'Officiel — Women of Our Time 2026</li>
-        <li class="cred-item">Top Asia SME100 · Top 30 CSR Saigon Times</li>
+      <p class="profile-p">
+        I am Ton Nu Xuan Quyen — founder of BluSaigon and CoreU AI. Long before anyone asked me to consult on AI, I was already integrating it into my own business operations. That hands-on experience is the foundation of everything I teach.
+      </p>
+      <p class="profile-p">
+        As Founder of CoreU AI, I understand the difference between knowing about AI and successfully deploying it in a real business environment. Every program I design starts from a concrete problem — never from theory.
+      </p>
+      <p class="profile-p">
+        I am currently pursuing a PhD in AI Applications at Golden Gate University (USA), researching how artificial intelligence transforms professional training and human development.
+      </p>
+      <ul class="cred-list">
+        <li>B.S. Finance — Brigham Young University, USA</li>
+        <li>PhD Candidate, AI Applications — Golden Gate University, USA</li>
+        <li>Shark Tank Vietnam — Season 4</li>
+        <li>Golden Rose Award 2025 · Outstanding Young Entrepreneur 2024–2025</li>
+        <li>Inspirational Entrepreneur 2023</li>
+        <li>L'Officiel — Women of Our Time 2026</li>
+        <li>Top Asia SME100 · Top 30 CSR, Saigon Times</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- SERVICES — editorial list rows -->
+<!-- SERVICES -->
 <section id="services" class="section s-cream">
-  <div class="s-head reveal">
-    <span class="kicker">Học cùng tôi</span>
-    <h2 class="s-title">Ba hình thức đồng hành —<br><em>một mục tiêu chung.</em></h2>
-    <p class="s-sub">Dù bạn mới bắt đầu, đang lãnh đạo doanh nghiệp, hay muốn xây dựng sự nghiệp trong lĩnh vực AI — tôi có chương trình phù hợp với đúng nơi bạn đang đứng.</p>
+  <div class="services-wrap">
+    <div class="s-head reveal">
+      <span class="kicker">Work With Me</span>
+      <h2 class="s-title on-cream">Three ways to work together —<br><em>one shared goal.</em></h2>
+      <p class="s-sub">Whether you're new to AI, leading a business, or building a career in this field — I have a program designed for exactly where you are today.</p>
+    </div>
+    <div class="services-list reveal">
+      <div class="svc-row">
+        <div class="svc-num">01</div>
+        <div class="svc-body">
+          <div class="svc-for">For individuals & beginners</div>
+          <div class="svc-name">AI Fluency in 30 Days</div>
+          <p class="svc-desc">A structured program for professionals with no technical background. Within the first three sessions, you will have practical AI tools integrated into your daily workflow — saving hours every week from day one.</p>
+          <a href="https://coreu.ai/courses" target="_blank" class="svc-link svc-link-m">View Program →</a>
+        </div>
+        <div class="svc-action">
+          <a href="https://coreu.ai/courses" target="_blank" class="svc-link">View Program →</a>
+        </div>
+      </div>
+      <div class="svc-row">
+        <div class="svc-num">02</div>
+        <div class="svc-body">
+          <div class="svc-for">For business owners & executives</div>
+          <div class="svc-name">AI Playbook for Decision Makers</div>
+          <p class="svc-desc">You don't need to understand the technology. You need to know precisely where AI creates value in your organization — and how to implement it without disrupting your team. I work alongside you through every decision.</p>
+          <a href="https://coreu.ai/courses" target="_blank" class="svc-link svc-link-m">View Program →</a>
+        </div>
+        <div class="svc-action">
+          <a href="https://coreu.ai/courses" target="_blank" class="svc-link">View Program →</a>
+        </div>
+      </div>
+      <div class="svc-row">
+        <div class="svc-num">03</div>
+        <div class="svc-body">
+          <div class="svc-for">For aspiring AI consultants</div>
+          <div class="svc-name">Become an AI Consultant</div>
+          <p class="svc-desc">Built from my experience founding CoreU AI and advising dozens of businesses. I teach exactly what works in practice — from client acquisition to delivering measurable outcomes. I lead every session personally.</p>
+          <a href="#cta" class="svc-link svc-link-m">Let's Talk First →</a>
+        </div>
+        <div class="svc-action">
+          <a href="#cta" class="svc-link">Let's Talk First →</a>
+        </div>
+      </div>
+    </div>
+    <p class="svc-quote reveal">"Knowledge is available everywhere. Experience from actual implementation — that belongs only to those who have done it."</p>
   </div>
-
-  <div class="services-editorial reveal">
-    <div class="service-row">
-      <div class="service-num">01</div>
-      <div class="service-body">
-        <div class="service-tag">Cho người chưa biết bắt đầu từ đâu</div>
-        <div class="service-name">Làm Chủ AI Trong 30 Ngày</div>
-        <p class="service-desc">Tôi hiểu cảm giác bị bỏ lại khi cả thế giới đang nói về AI. Sau 3 buổi đầu tiên, team một người của bạn sẽ làm được việc của team ba người. Không cần nền tảng kỹ thuật.</p>
-        <a href="https://coreu.ai/courses" target="_blank" class="service-link service-link-mobile">Xem khoá học</a>
-      </div>
-      <div class="service-action">
-        <a href="https://coreu.ai/courses" target="_blank" class="service-link">Xem khoá học</a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="service-num">02</div>
-      <div class="service-body">
-        <div class="service-tag">Cho chủ doanh nghiệp & lãnh đạo</div>
-        <div class="service-name">AI Playbook Cho Người Ra Quyết Định</div>
-        <p class="service-desc">Bạn không cần hiểu kỹ thuật. Bạn cần biết AI cắt chi phí ở đâu, tăng doanh thu chỗ nào — và làm thế nào triển khai mà team không loạn. Tôi đồng hành từng bước, không PDF rồi biến mất.</p>
-        <a href="https://coreu.ai/courses" target="_blank" class="service-link service-link-mobile">Xem khoá học</a>
-      </div>
-      <div class="service-action">
-        <a href="https://coreu.ai/courses" target="_blank" class="service-link">Xem khoá học</a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="service-num">03</div>
-      <div class="service-body">
-        <div class="service-tag">Cho người muốn xây nghề tư vấn AI</div>
-        <div class="service-name">Trở Thành AI Consultant</div>
-        <p class="service-desc">Tôi đã xây CoreU AI từ đầu, đồng hành thực cho hàng chục doanh nghiệp. Tôi dạy lại đúng những gì hoạt động thật — từ cách tìm khách đến cách deliver kết quả. Tôi trực tiếp đồng hành, không có trợ giảng thay thế.</p>
-        <a href="#cta" class="service-link service-link-mobile">Nói chuyện với tôi trước</a>
-      </div>
-      <div class="service-action">
-        <a href="#cta" class="service-link">Nói chuyện trước</a>
-      </div>
-    </div>
-  </div>
-
-  <p class="services-footer reveal">"Kiến thức có thể tìm ở bất kỳ đâu. Kinh nghiệm triển khai thực tế — thì chỉ có ở người đã làm."</p>
 </section>
 
 <!-- COURSES -->
 <section class="section s-dark">
-  <div class="courses-wrap">
-    <div class="courses-header reveal">
-      <div>
-        <span class="kicker kicker-dark">Khoá học tại CoreU AI</span>
-        <h2 class="s-title light">Các khoá học<br>tại CoreU AI</h2>
-        <p class="s-sub light">Được thiết kế để ứng dụng ngay vào công việc — không yêu cầu nền tảng kỹ thuật.</p>
-      </div>
-      <a href="https://coreu.ai/courses" target="_blank" style="font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:.15rem;white-space:nowrap;align-self:flex-end">Xem tất cả →</a>
+  <div class="courses-hd reveal">
+    <div>
+      <span class="kicker kicker-gold">Courses at CoreU AI</span>
+      <h2 class="s-title on-dark">Structured learning,<br><em>immediate application.</em></h2>
+      <p class="s-sub on-dark">Designed to be applied from the very first session — no technical background required.</p>
     </div>
-    <div class="courses-grid reveal">
-      <div class="course-card">
-        <div class="course-tag">Khoá học · Thực chiến</div>
-        <div class="course-name">Bản Sao AI</div>
-        <p class="course-desc">Tạo ảnh, video, livestream và giọng nói bằng AI mới nhất. 27+ tài liệu thực hành. Buổi đầu tiên đã có sản phẩm để dùng ngay.</p>
-        <div class="course-foot">
-          <span class="course-price">497.000đ</span>
-          <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Đăng ký</a>
-        </div>
+    <a href="https://coreu.ai/courses" target="_blank" style="font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:.15rem;white-space:nowrap;align-self:flex-end">View All Courses →</a>
+  </div>
+  <div class="courses-grid reveal">
+    <div class="course">
+      <div class="course-tag">Course · Practical</div>
+      <div class="course-name">AI Content Creation</div>
+      <p class="course-desc">Generate images, video, livestreams, and voiceovers using the latest AI tools. 27+ hands-on materials. From your very first session, you'll have work-ready outputs.</p>
+      <div class="course-foot">
+        <span class="course-price">497,000₫</span>
+        <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Enroll →</a>
       </div>
-      <div class="course-card">
-        <div class="course-tag">Khoá học · Doanh nhân</div>
-        <div class="course-name">Chinh Phục Cá Mập</div>
-        <p class="course-desc">Công thức gọi vốn từ người đã đứng trên sân khấu Shark Tank. 16+ tài liệu, 4 giờ thực chiến. Không có lý thuyết sách vở.</p>
-        <div class="course-foot">
-          <span class="course-price">497.000đ</span>
-          <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Đăng ký</a>
-        </div>
+    </div>
+    <div class="course">
+      <div class="course-tag">Course · Entrepreneurs</div>
+      <div class="course-name">Winning Investor Pitches</div>
+      <p class="course-desc">The fundraising framework from someone who stood on the Shark Tank stage. 16+ materials, 4 hours of real-world strategy. No filler theory.</p>
+      <div class="course-foot">
+        <span class="course-price">497,000₫</span>
+        <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Enroll →</a>
       </div>
-      <div class="course-card ft">
-        <div class="course-tag" style="color:var(--gold)">Toàn quyền · Trọn đời</div>
-        <div class="course-name">CoreU University</div>
-        <p class="course-desc">Tất cả khoá học hiện tại và tương lai. 200+ tài liệu, cập nhật vĩnh viễn. Đầu tư một lần, học cả đời.</p>
-        <div class="course-foot">
-          <span class="course-price" style="color:var(--gold)">35.000.000đ</span>
-          <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Tìm hiểu</a>
-        </div>
+    </div>
+    <div class="course ft">
+      <div class="course-tag" style="color:var(--gold)">Full Access · Lifetime</div>
+      <div class="course-name">CoreU University</div>
+      <p class="course-desc">All current and future courses. 200+ materials, continuously updated. For those who are serious about building expertise in the AI era.</p>
+      <div class="course-foot">
+        <span class="course-price" style="color:var(--gold)">35,000,000₫</span>
+        <a href="https://coreu.ai/courses" target="_blank" class="course-cta">Learn More →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EVENTS -->
+<!-- EVENTS / SPEAKING -->
 <section id="events" class="section s-warm">
   <div class="s-head reveal">
-    <span class="kicker">Sự kiện</span>
-    <h2 class="s-title">Những nơi tôi đã<br>được mời chia sẻ</h2>
+    <span class="kicker">Speaking</span>
+    <h2 class="s-title on-cream">Selected speaking<br>engagements</h2>
   </div>
-  <blockquote class="events-pull reveal">
-    "Tôi chỉ nhận lời ở những sự kiện mà câu chuyện thật của mình có thể tạo ra thay đổi thật. Không có buổi diễn nào."
+  <blockquote class="events-quote reveal">
+    "I accept speaking invitations at events where my real-world experience can create genuine value for the audience. Every session is a conversation — not a performance."
   </blockquote>
   <div class="events-mosaic reveal">
     <div class="ev-photo">
@@ -848,47 +856,47 @@ footer{
     </div>
     <div class="ev-photo">
       <img src="images/event-mba.jpg" alt="MBA — Sheraton Saigon" loading="lazy"/>
-      <div class="ev-label">MBA · Sheraton Saigon</div>
+      <div class="ev-label">MBA Programme · Sheraton Saigon</div>
     </div>
     <div class="ev-photo">
-      <img src="images/speaker1.jpg" alt="American Center HCMC 2026" loading="lazy"/>
-      <div class="ev-label">American Center · Panel Discussion 2026</div>
+      <img src="images/speaker1.jpg" alt="Panel Discussion 2026" loading="lazy"/>
+      <div class="ev-label">Panel Discussion · American Center 2026</div>
     </div>
     <div class="ev-photo">
-      <img src="images/signing.jpg" alt="Book signing event" loading="lazy"/>
-      <div class="ev-label">Ra mắt sách · Book Signing</div>
+      <img src="images/signing.jpg" alt="Book Launch" loading="lazy"/>
+      <div class="ev-label">Book Launch · Author Signing</div>
     </div>
   </div>
 </section>
 
 <!-- BOOKS -->
 <section id="books" class="section s-cream">
-  <div class="s-head center reveal">
-    <span class="kicker kicker-center" style="justify-content:center">Sách</span>
-    <h2 class="s-title center">Những gì tôi đã học được,<br><em>viết lại cho bạn</em></h2>
-    <p class="s-sub center" style="margin:.8rem auto 0;text-align:center">Không phải lý thuyết tôi đọc ở đâu đó. Là kinh nghiệm tôi trả giá thật để có được.</p>
+  <div class="s-head reveal" style="text-align:center">
+    <span class="kicker kicker-center" style="justify-content:center">Books</span>
+    <h2 class="s-title on-cream" style="text-align:center">What I have learned,<br><em>written down for you.</em></h2>
+    <p class="s-sub" style="margin:.9rem auto 0;text-align:center;max-width:440px">Not theory from textbooks. Experience earned firsthand — distilled into every page.</p>
   </div>
-  <div class="books-editorial reveal">
-    <div class="book-feature">
+  <div class="books-grid reveal">
+    <div class="book">
       <div class="book-cover">
-        <img src="images/book-ca-map.jpg" alt="Chinh phục Cá Mập" loading="lazy"/>
+        <img src="images/book-ca-map.jpg" alt="Winning the Sharks" loading="lazy"/>
       </div>
-      <div class="book-meta">
+      <div>
         <div class="book-pub">Alpha Books · 2024</div>
-        <h3 class="book-title">Chinh phục<br>Cá Mập</h3>
-        <p class="book-desc">3 năm chuẩn bị, 1 sân khấu Shark Tank, 68 câu hỏi thực chiến mà nhà đầu tư thật sự hỏi. Đây là quyển sách tôi ước mình có từ trước khi bước lên sân khấu đó.</p>
-        <a href="https://shopee.vn/Sách-Chinh-Phục-Cá-Mập-(Alphabooks)-i.1378090862.51854200228" target="_blank" class="book-link">Mua trên Shopee</a>
+        <h3 class="book-title">Winning<br>the Sharks</h3>
+        <p class="book-desc">Three years of preparation, one Shark Tank stage, 68 real investor questions that determine whether you get funded. The playbook I wish I had before I walked into that room.</p>
+        <a href="https://shopee.vn/Sách-Chinh-Phục-Cá-Mập-(Alphabooks)-i.1378090862.51854200228" target="_blank" class="book-link">Buy on Shopee →</a>
       </div>
     </div>
-    <div class="book-feature">
+    <div class="book">
       <div class="book-cover">
-        <img src="images/book-madam.jpg" alt="Hãy kể cho tôi nghe đi, Madam!" loading="lazy"/>
+        <img src="images/book-madam.jpg" alt="Tell Me, Madam" loading="lazy"/>
       </div>
-      <div class="book-meta">
-        <div class="book-pub">NXB Dân Trí</div>
-        <h3 class="book-title">Hãy kể cho tôi<br>nghe đi, Madam!</h3>
-        <p class="book-desc">Cuốn sách về chính bạn — những câu chuyện chân thật của người phụ nữ Việt trên hành trình xây dựng sự nghiệp, gia đình và bản thân. Không phải cẩm nang thành công, mà là những trang viết để bạn thấy mình không đơn độc.</p>
-        <a href="https://www.fahasa.com/hay-ke-cho-toi-nghe-di-madam.html" target="_blank" class="book-link">Mua tại Fahasa</a>
+      <div>
+        <div class="book-pub">Dan Tri Publishing</div>
+        <h3 class="book-title">Tell Me,<br>Madam</h3>
+        <p class="book-desc">Honest stories from a Vietnamese woman's journey — building a career, raising a family, and staying true to herself through it all. Written not to inspire, but to remind you that you are not alone.</p>
+        <a href="https://www.fahasa.com/hay-ke-cho-toi-nghe-di-madam.html" target="_blank" class="book-link">Buy at Fahasa →</a>
       </div>
     </div>
   </div>
@@ -896,109 +904,106 @@ footer{
 
 <!-- FAQ -->
 <section id="faq" class="section s-dark">
-  <div class="s-head center reveal">
-    <span class="kicker kicker-dark kicker-center" style="justify-content:center">FAQ</span>
-    <h2 class="s-title light center">Bạn đang phân vân?<br><em>Tôi đã nghe câu hỏi này rồi.</em></h2>
+  <div class="s-head reveal" style="text-align:center">
+    <span class="kicker kicker-gold kicker-center" style="justify-content:center">FAQ</span>
+    <h2 class="s-title on-dark" style="text-align:center">Common questions —<br><em>honest answers.</em></h2>
   </div>
   <div class="faq-wrap reveal">
     <div class="faq-item">
-      <button class="faq-btn"><span>Tôi chưa biết gì về AI — có bắt đầu được không?</span><span class="faq-icon">+</span></button>
-      <div class="faq-ans">Hoàn toàn có thể. Đây thực ra là thời điểm lý tưởng để bắt đầu đúng hướng — trước khi học sai cách. Khoá học của tôi không yêu cầu nền tảng kỹ thuật. Chỉ cần bạn có bài toán thực và sẵn sàng thực hành từ buổi đầu tiên.</div>
+      <button class="faq-btn"><span>I have no technical background — is this right for me?</span><span class="faq-icon">+</span></button>
+      <div class="faq-ans">Absolutely. In fact, starting without prior assumptions often means learning the right approach from the beginning. My programs require no technical foundation — only a real business problem and the willingness to practice from session one.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-btn"><span>Workshop cho doanh nghiệp tổ chức thế nào?</span><span class="faq-icon">+</span></button>
-      <div class="faq-ans">Từ nửa ngày đến 2 ngày tuỳ chủ đề. Toàn bộ nội dung được thiết kế riêng dựa trên ngành và bài toán thực của bạn — không dùng slide template chung. Tôi cần hiểu doanh nghiệp của bạn trước khi thiết kế chương trình.</div>
+      <button class="faq-btn"><span>How are corporate workshops structured?</span><span class="faq-icon">+</span></button>
+      <div class="faq-ans">Workshops range from half a day to two full days depending on scope and depth. All content is designed specifically around your industry and your team's actual challenges — never from a generic template. I need to understand your business before designing the program.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-btn"><span>Khoá học online và tư vấn trực tiếp khác nhau thế nào?</span><span class="faq-icon">+</span></button>
-      <div class="faq-ans">Khoá học online phù hợp để xây nền tảng — học theo lộ trình, tự điều chỉnh tốc độ. Tư vấn trực tiếp dành cho doanh nghiệp cần giải quyết vấn đề cụ thể ngay bây giờ và cần tôi đồng hành thực sự trong quá trình triển khai — từ quyết định đến kết quả.</div>
+      <button class="faq-btn"><span>What is the difference between online courses and direct consulting?</span><span class="faq-icon">+</span></button>
+      <div class="faq-ans">Online courses are ideal for building a structured knowledge foundation at your own pace. Direct consulting is for organizations that need to solve a specific problem right now — where I work alongside your team through the full implementation process, from decision to delivery.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-btn"><span>Doanh nghiệp nhỏ cũng cần chiến lược AI không?</span><span class="faq-icon">+</span></button>
-      <div class="faq-ans">Đặc biệt cần — vì bạn không có nguồn lực để thử sai. AI đúng cách giúp team 3 người làm việc hiệu quả như team 8 người. Doanh nghiệp nhỏ không cần ít AI hơn, họ cần AI được chọn đúng và triển khai đúng thứ tự hơn.</div>
+      <button class="faq-btn"><span>Do small businesses need an AI strategy?</span><span class="faq-icon">+</span></button>
+      <div class="faq-ans">Especially so — because limited resources mean you cannot afford to experiment randomly. Applied correctly, AI allows a lean team to operate with the efficiency of a much larger organization. Small businesses don't need less AI; they need AI that is chosen and sequenced correctly.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-btn"><span>Học xong, team của tôi có tự làm được không?</span><span class="faq-icon">+</span></button>
-      <div class="faq-ans">Đó là tiêu chí tôi đo thành công của mỗi chương trình. Mục tiêu không phải là bạn cần tôi mãi — mà là khi kết thúc, team của bạn tự vận hành, tự cải tiến và phát triển tiếp mà không cần hỏi tôi từng bước nhỏ.</div>
+      <button class="faq-btn"><span>Will my team be able to operate independently after the program?</span><span class="faq-icon">+</span></button>
+      <div class="faq-ans">That is the measure of success I use for every engagement. The goal is not for you to need me indefinitely — it is for your team to operate, improve, and grow on their own once the program concludes.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-btn"><span>Làm thế nào để bắt đầu làm việc với tôi?</span><span class="faq-icon">+</span></button>
-      <div class="faq-ans">Để lại email và mô tả ngắn bài toán của bạn. Tôi sẽ phản hồi trong 24 giờ làm việc để sắp xếp 30 phút nói chuyện — không phải để bán hàng, mà để tôi hiểu bạn đang đứng ở đâu và con đường ngắn nhất cho bạn là gì.</div>
+      <button class="faq-btn"><span>How do I get started?</span><span class="faq-icon">+</span></button>
+      <div class="faq-ans">Leave your email below with a brief description of your situation. I will respond within one business day to arrange a complimentary 30-minute conversation — not a sales call, but a genuine discussion to understand where you are and what approach would serve you best.</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section id="cta">
-  <span class="kicker kicker-dark kicker-center" style="justify-content:center;margin-bottom:.9rem">Bắt đầu</span>
-  <h2>Bắt đầu bằng<br>một cuộc trò chuyện —<br><em>không có cam kết nào cả.</em></h2>
-  <p style="margin-top:1rem">Chia sẻ về doanh nghiệp và mục tiêu của bạn. Tôi sẽ lắng nghe và đề xuất hướng tiếp cận phù hợp nhất.</p>
-  <div class="cta-form" style="margin-top:2.8rem">
-    <input type="email" placeholder="Email của bạn"/>
-    <button type="button">Đặt lịch →</button>
+  <span class="kicker kicker-gold kicker-center" style="justify-content:center">Get in Touch</span>
+  <h2>Begin with a conversation —<br><em>no commitment required.</em></h2>
+  <p>Share your situation and goals. I will listen, and suggest the most appropriate path forward.</p>
+  <div class="cta-form">
+    <input type="email" placeholder="Your email address"/>
+    <button type="button">Send →</button>
   </div>
-  <p class="cta-note">Phản hồi trong 24 giờ làm việc · Hoàn toàn miễn phí</p>
+  <p class="cta-note">Response within one business day · Completely free</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
-      <span class="logo">Tôn Nữ <em>Xuân Quyên</em></span>
-      <p>AI Consultant · Author · Speaker<br>Chủ tịch HĐQT BluSaigon · Founder CoreU AI<br>PhD Candidate — Golden Gate University</p>
+      <span class="logo">Ton Nu <em>Xuan Quyen</em></span>
+      <p>AI Consultant · Author · Speaker<br>Chairman, BluSaigon · Founder, CoreU AI<br>PhD Candidate — Golden Gate University</p>
     </div>
     <div class="foot-col">
-      <h5>Khoá học</h5>
+      <h5>Courses</h5>
       <ul>
-        <li><a href="https://coreu.ai/courses" target="_blank">Bản Sao AI</a></li>
-        <li><a href="https://coreu.ai/courses" target="_blank">Chinh Phục Cá Mập</a></li>
+        <li><a href="https://coreu.ai/courses" target="_blank">AI Content Creation</a></li>
+        <li><a href="https://coreu.ai/courses" target="_blank">Winning Investor Pitches</a></li>
         <li><a href="https://coreu.ai/courses" target="_blank">CoreU University</a></li>
-        <li><a href="https://coreu.ai/courses" target="_blank">Xem tất cả</a></li>
+        <li><a href="https://coreu.ai/courses" target="_blank">View All →</a></li>
       </ul>
     </div>
     <div class="foot-col">
-      <h5>Sách</h5>
+      <h5>Books</h5>
       <ul>
-        <li><a href="https://shopee.vn/Sách-Chinh-Phục-Cá-Mập-(Alphabooks)-i.1378090862.51854200228" target="_blank">Chinh phục Cá Mập</a></li>
-        <li><a href="https://www.fahasa.com/hay-ke-cho-toi-nghe-di-madam.html" target="_blank">Hãy kể cho tôi nghe, Madam</a></li>
+        <li><a href="https://shopee.vn/Sách-Chinh-Phục-Cá-Mập-(Alphabooks)-i.1378090862.51854200228" target="_blank">Winning the Sharks</a></li>
+        <li><a href="https://www.fahasa.com/hay-ke-cho-toi-nghe-di-madam.html" target="_blank">Tell Me, Madam</a></li>
       </ul>
     </div>
     <div class="foot-col">
-      <h5>Kết nối</h5>
+      <h5>Connect</h5>
       <ul>
         <li><a href="https://www.facebook.com/quyen.xuan" target="_blank">Facebook</a></li>
         <li><a href="https://linkedin.com/in/quyen-ton-81a56b3b" target="_blank">LinkedIn</a></li>
         <li><a href="https://www.instagram.com/blusaigonvietnam" target="_blank">Instagram</a></li>
-        <li><a href="https://youtube.com/@GiaDinhTrumSo" target="_blank">YouTube — Gia đình Trùm Sò</a></li>
+        <li><a href="https://youtube.com/@GiaDinhTrumSo" target="_blank">YouTube</a></li>
         <li><a href="https://coreu.ai" target="_blank">CoreU AI</a></li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2026 Tôn Nữ Xuân Quyên. All rights reserved.</span>
+    <span>© 2026 Ton Nu Xuan Quyen. All rights reserved.</span>
     <span>quyen.ai</span>
   </div>
 </footer>
 
 <script>
-// Nav scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', scrollY > 40);
-}, {passive:true});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>50);
+},{passive:true});
 
-// Reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on') });
-}, {threshold:.05, rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// FAQ
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-btn').addEventListener('click', () => {
-    const open = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if(!open) item.classList.add('open');
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-btn').addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open)item.classList.add('open');
   });
 });
 </script>
