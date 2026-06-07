@@ -92,53 +92,53 @@ nav.scrolled .nav-cta{border-color:var(--blush)!important;color:var(--blush)!imp
 .hero-bg::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(
-    to bottom,
-    rgba(26,22,18,.2) 0%,
-    rgba(26,22,18,.45) 55%,
-    rgba(26,22,18,.96) 100%
+    160deg,
+    rgba(26,22,18,.15) 0%,
+    rgba(26,22,18,.55) 50%,
+    rgba(26,22,18,.92) 100%
   );
 }
+/* Hero: centered, elegant, minimal */
 .hero-inner{
   position:relative;z-index:2;
   display:flex;flex-direction:column;
-  justify-content:flex-end;
+  justify-content:center;
+  align-items:flex-start;
   min-height:100vh;
-  padding:0 6vw 5.5rem;
-  max-width:960px;
+  padding:9rem 6vw 5rem;
+  max-width:780px;
 }
-.hero-kicker{
-  display:inline-flex;align-items:center;gap:.7rem;
-  margin-bottom:2rem;
+.hero-eyebrow{
+  font-size:.6rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);
+  margin-bottom:1.8rem;
+  display:flex;align-items:center;gap:.7rem;
 }
 .hero-dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--blush-lt);
+  width:4px;height:4px;border-radius:50%;
+  background:var(--blush-lt);flex-shrink:0;
   animation:pulse 2.5s ease infinite;
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.hero-kicker span{
-  font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,255,255,.4);
-}
 .hero-h1{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3rem,6.5vw,6rem);
-  font-weight:400;line-height:1.02;
-  color:#fff;letter-spacing:-.01em;
+  font-size:clamp(2.6rem,4.5vw,4.4rem);
+  font-weight:300;line-height:1.12;
+  color:#fff;letter-spacing:.01em;
+  margin-bottom:1.6rem;
+}
+.hero-h1 strong{
+  display:block;font-weight:500;
+  font-size:clamp(3rem,5.5vw,5.4rem);
+  letter-spacing:-.01em;line-height:1;
   margin-bottom:.5rem;
 }
 .hero-h1 em{
   font-style:italic;color:var(--blush-lt);
-  display:block;font-weight:300;
+  font-weight:300;font-size:clamp(1.1rem,2vw,1.6rem);
+  display:block;margin-top:.8rem;letter-spacing:.02em;
 }
-.hero-tagline{
-  font-size:.95rem;font-weight:300;
-  color:rgba(255,255,255,.5);
-  line-height:1.85;max-width:520px;
-  margin-top:1rem;margin-bottom:2.8rem;
-  letter-spacing:.01em;
-}
-.hero-btns{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-bottom:3.8rem}
+.hero-btns{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-bottom:4rem}
 .btn-primary{
   padding:.74rem 2rem;
   background:var(--blush);color:#fff;
@@ -649,33 +649,31 @@ footer{
     <img src="images/event-stage.jpg" alt="" aria-hidden="true"/>
   </div>
   <div class="hero-inner">
-    <div class="hero-kicker">
+    <div class="hero-eyebrow">
       <span class="hero-dot"></span>
-      <span>Founder, CoreU AI · Chairman, BluSaigon · PhD Candidate, GGU</span>
+      <span>AI Consultant · Author · Speaker</span>
     </div>
     <h1 class="hero-h1">
-      I am<br>Ton Nu Xuan Quyen.
-      <em>I help businesses<br>implement AI that<br>actually delivers results.</em>
+      <strong>Ton Nu Xuan Quyen</strong>
+      Founder. Author. AI Consultant.
+      <em>Helping businesses implement AI — for real.</em>
     </h1>
-    <p class="hero-tagline">
-      Every consulting engagement and training program I design starts from a real business challenge — not from a textbook. I applied AI to my own company first, saw the results, and then began teaching others.
-    </p>
     <div class="hero-btns">
-      <a href="#services" class="btn-primary">Explore Programs</a>
-      <a href="#profile" class="btn-ghost">My Story</a>
+      <a href="#services" class="btn-primary">Work With Me</a>
+      <a href="#profile" class="btn-ghost">About</a>
     </div>
     <div class="hero-stats">
       <div class="h-stat">
         <div class="h-stat-n">50+</div>
-        <div class="h-stat-l">Businesses advised</div>
+        <div class="h-stat-l">Businesses</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">200+</div>
-        <div class="h-stat-l">Students trained</div>
+        <div class="h-stat-l">Students</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">2</div>
-        <div class="h-stat-l">Books published</div>
+        <div class="h-stat-l">Books</div>
       </div>
       <div class="h-stat">
         <div class="h-stat-n">5+</div>
@@ -719,18 +717,15 @@ footer{
     </div>
     <div class="profile-content reveal d1">
       <span class="kicker">About</span>
-      <h2>From founder to<br>AI specialist — everything<br>comes from <em>practice.</em></h2>
+      <h2>Everything I teach<br>comes from <em>doing it first.</em></h2>
       <div class="profile-pull">
-        "I applied AI to my own business first — saw real results — then started sharing what actually works."
+        "I applied AI to my own business before I advised anyone else."
       </div>
       <p class="profile-p">
-        I am Ton Nu Xuan Quyen — founder of BluSaigon and CoreU AI. Long before anyone asked me to consult on AI, I was already integrating it into my own business operations. That hands-on experience is the foundation of everything I teach.
+        I'm Ton Nu Xuan Quyen — founder of BluSaigon and CoreU AI. I began integrating AI into my own operations before consulting became a conversation. The results I saw there became the curriculum I teach today.
       </p>
       <p class="profile-p">
-        As Founder of CoreU AI, I understand the difference between knowing about AI and successfully deploying it in a real business environment. Every program I design starts from a concrete problem — never from theory.
-      </p>
-      <p class="profile-p">
-        I am currently pursuing a PhD in AI Applications at Golden Gate University (USA), researching how artificial intelligence transforms professional training and human development.
+        Currently pursuing a PhD in AI Applications at Golden Gate University (USA), researching how AI transforms professional training and human development.
       </p>
       <ul class="cred-list">
         <li>B.S. Finance — Brigham Young University, USA</li>
@@ -750,16 +745,16 @@ footer{
   <div class="services-wrap">
     <div class="s-head reveal">
       <span class="kicker">Work With Me</span>
-      <h2 class="s-title on-cream">Three ways to work together —<br><em>one shared goal.</em></h2>
-      <p class="s-sub">Whether you're new to AI, leading a business, or building a career in this field — I have a program designed for exactly where you are today.</p>
+      <h2 class="s-title on-cream">Three programs —<br><em>one approach.</em></h2>
+      <p class="s-sub">Real-world AI implementation. No slides. No filler. Designed around your actual situation.</p>
     </div>
     <div class="services-list reveal">
       <div class="svc-row">
         <div class="svc-num">01</div>
         <div class="svc-body">
-          <div class="svc-for">For individuals & beginners</div>
+          <div class="svc-for">Individuals · No technical background needed</div>
           <div class="svc-name">AI Fluency in 30 Days</div>
-          <p class="svc-desc">A structured program for professionals with no technical background. Within the first three sessions, you will have practical AI tools integrated into your daily workflow — saving hours every week from day one.</p>
+          <p class="svc-desc">By session three, you'll have AI working inside your daily workflow — saving hours each week. Built for professionals, not engineers.</p>
           <a href="https://coreu.ai/courses" target="_blank" class="svc-link svc-link-m">View Program →</a>
         </div>
         <div class="svc-action">
@@ -769,9 +764,9 @@ footer{
       <div class="svc-row">
         <div class="svc-num">02</div>
         <div class="svc-body">
-          <div class="svc-for">For business owners & executives</div>
-          <div class="svc-name">AI Playbook for Decision Makers</div>
-          <p class="svc-desc">You don't need to understand the technology. You need to know precisely where AI creates value in your organization — and how to implement it without disrupting your team. I work alongside you through every decision.</p>
+          <div class="svc-for">Business owners · Executives</div>
+          <div class="svc-name">AI Playbook for Leaders</div>
+          <p class="svc-desc">Where does AI reduce cost? Where does it grow revenue? I map it to your business and walk with you through every implementation decision.</p>
           <a href="https://coreu.ai/courses" target="_blank" class="svc-link svc-link-m">View Program →</a>
         </div>
         <div class="svc-action">
@@ -781,17 +776,17 @@ footer{
       <div class="svc-row">
         <div class="svc-num">03</div>
         <div class="svc-body">
-          <div class="svc-for">For aspiring AI consultants</div>
+          <div class="svc-for">Aspiring AI consultants</div>
           <div class="svc-name">Become an AI Consultant</div>
-          <p class="svc-desc">Built from my experience founding CoreU AI and advising dozens of businesses. I teach exactly what works in practice — from client acquisition to delivering measurable outcomes. I lead every session personally.</p>
-          <a href="#cta" class="svc-link svc-link-m">Let's Talk First →</a>
+          <p class="svc-desc">From founding CoreU AI to advising 50+ businesses — I teach what actually works. Client acquisition, delivery, outcomes. Every session, personally led.</p>
+          <a href="#cta" class="svc-link svc-link-m">Let's Talk →</a>
         </div>
         <div class="svc-action">
-          <a href="#cta" class="svc-link">Let's Talk First →</a>
+          <a href="#cta" class="svc-link">Let's Talk →</a>
         </div>
       </div>
     </div>
-    <p class="svc-quote reveal">"Knowledge is available everywhere. Experience from actual implementation — that belongs only to those who have done it."</p>
+    <p class="svc-quote reveal">"Knowledge is everywhere. The ability to implement it — that takes someone who has already done it."</p>
   </div>
 </section>
 
@@ -843,7 +838,7 @@ footer{
     <h2 class="s-title on-cream">Selected speaking<br>engagements</h2>
   </div>
   <blockquote class="events-quote reveal">
-    "I accept speaking invitations at events where my real-world experience can create genuine value for the audience. Every session is a conversation — not a performance."
+    "I speak where experience matters more than credentials."
   </blockquote>
   <div class="events-mosaic reveal">
     <div class="ev-photo">
@@ -873,8 +868,8 @@ footer{
 <section id="books" class="section s-cream">
   <div class="s-head reveal" style="text-align:center">
     <span class="kicker kicker-center" style="justify-content:center">Books</span>
-    <h2 class="s-title on-cream" style="text-align:center">What I have learned,<br><em>written down for you.</em></h2>
-    <p class="s-sub" style="margin:.9rem auto 0;text-align:center;max-width:440px">Not theory from textbooks. Experience earned firsthand — distilled into every page.</p>
+    <h2 class="s-title on-cream" style="text-align:center">Two books.<br><em>All firsthand.</em></h2>
+    <p class="s-sub" style="margin:.9rem auto 0;text-align:center;max-width:380px">Experience earned, not studied — distilled into every page.</p>
   </div>
   <div class="books-grid reveal">
     <div class="book">
@@ -884,7 +879,7 @@ footer{
       <div>
         <div class="book-pub">Alpha Books · 2024</div>
         <h3 class="book-title">Winning<br>the Sharks</h3>
-        <p class="book-desc">Three years of preparation, one Shark Tank stage, 68 real investor questions that determine whether you get funded. The playbook I wish I had before I walked into that room.</p>
+        <p class="book-desc">68 real investor questions. One Shark Tank stage. Three years distilled into the playbook I wish I had before I walked in.</p>
         <a href="https://shopee.vn/Sách-Chinh-Phục-Cá-Mập-(Alphabooks)-i.1378090862.51854200228" target="_blank" class="book-link">Buy on Shopee →</a>
       </div>
     </div>
@@ -895,7 +890,7 @@ footer{
       <div>
         <div class="book-pub">Dan Tri Publishing</div>
         <h3 class="book-title">Tell Me,<br>Madam</h3>
-        <p class="book-desc">Honest stories from a Vietnamese woman's journey — building a career, raising a family, and staying true to herself through it all. Written not to inspire, but to remind you that you are not alone.</p>
+        <p class="book-desc">Honest stories from one woman's journey — career, family, identity. Written not to inspire, but to remind you that you are not alone.</p>
         <a href="https://www.fahasa.com/hay-ke-cho-toi-nghe-di-madam.html" target="_blank" class="book-link">Buy at Fahasa →</a>
       </div>
     </div>
@@ -939,8 +934,8 @@ footer{
 <!-- CTA -->
 <section id="cta">
   <span class="kicker kicker-gold kicker-center" style="justify-content:center">Get in Touch</span>
-  <h2>Begin with a conversation —<br><em>no commitment required.</em></h2>
-  <p>Share your situation and goals. I will listen, and suggest the most appropriate path forward.</p>
+  <h2>Let's talk.<br><em>No commitment.</em></h2>
+  <p>Tell me where you are. I'll suggest where to go.</p>
   <div class="cta-form">
     <input type="email" placeholder="Your email address"/>
     <button type="button">Send →</button>
