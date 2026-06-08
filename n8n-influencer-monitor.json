@@ -1,0 +1,175 @@
+{
+  "name": "AI Influencer Monitor + Content Ideas",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 23 * * *"
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Daily 6AM Vietnam",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300],
+      "notes": "Runs daily at 6AM Vietnam = 23:00 UTC previous day"
+    },
+    {
+      "parameters": {
+        "jsCode": "// YouTube channel RSS feeds for all 8 influencers\n// UPDATE channel_id values if any are wrong\nconst influencers = [\n  {\n    name: 'Dan Martell',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCiNaJJQ5QmWxbj1InpGbmDg',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_DANMARTELL.xml',\n    handle: '@DanMartell'\n  },\n  {\n    name: 'Sabrina Ramonov',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCbmNph6atAoGfqLoCL_duAg',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_SABRINA.xml',\n    handle: '@SabrinaRamonov'\n  },\n  {\n    name: 'Robonuggets',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCKnMEa57FXYANq0DcKNBBVQ',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_ROBONUGGETS.xml',\n    handle: '@robonuggets'\n  },\n  {\n    name: 'Duncan Rogoff',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCDuncanRogoff',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_DUNCAN.xml',\n    handle: '@duncanrogoff'\n  },\n  {\n    name: 'Tina Huang',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2UXDak6o7rBm23x3jGpu3A',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_TINA.xml',\n    handle: '@TinaHuang'\n  },\n  {\n    name: 'Greg Eisenberg',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCGregEisenberg',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_GREG.xml',\n    handle: '@GregEisenberg'\n  },\n  {\n    name: 'Liam Ottley',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCo8bcnLyZH8tBIH9V1mLgqQ',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_LIAM.xml',\n    handle: '@LiamOttley'\n  },\n  {\n    name: 'Jeff Su',\n    youtube_rss: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCTedErMSNHFCg3g5HZK8i2Q',\n    twitter_rss: 'https://rss.app/feeds/YOUR_RSSAPP_KEY_JEFFSU.xml',\n    handle: '@JeffSu'\n  }\n];\n\nreturn influencers.map(inf => ({ json: inf }));"
+      },
+      "id": "influencer-list",
+      "name": "Influencer List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.youtube_rss }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "fetch-youtube",
+      "name": "Fetch YouTube RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.twitter_rss }}",
+        "options": {
+          "timeout": 10000,
+          "continueOnFail": true
+        }
+      },
+      "id": "fetch-twitter",
+      "name": "Fetch Twitter RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse XML RSS feeds and extract items from last 48 hours\nconst items = [];\nconst cutoff = Date.now() - (48 * 60 * 60 * 1000);\n\nfor (const input of $input.all()) {\n  const body = input.json.data || input.json.body || '';\n  if (!body) continue;\n  \n  // Extract entries from YouTube Atom feed\n  const entryRegex = /<entry>([\\s\\S]*?)<\\/entry>/g;\n  let match;\n  while ((match = entryRegex.exec(body)) !== null) {\n    const entry = match[1];\n    const title = (entry.match(/<title>([^<]+)<\\/title>/) || [])[1] || '';\n    const link = (entry.match(/href=\"([^\"]+)\"/) || [])[1] || '';\n    const published = (entry.match(/<published>([^<]+)<\\/published>/) || [])[1] || '';\n    const description = (entry.match(/<media:description>([\\s\\S]*?)<\\/media:description>/) || [])[1] || '';\n    \n    const pubTime = published ? new Date(published).getTime() : 0;\n    if (pubTime > cutoff && title) {\n      items.push({\n        source: 'YouTube',\n        title: title.trim(),\n        link,\n        published,\n        description: description.substring(0, 300).trim()\n      });\n    }\n  }\n  \n  // Extract items from Twitter RSS (RSS 2.0 format)\n  const itemRegex = /<item>([\\s\\S]*?)<\\/item>/g;\n  while ((match = itemRegex.exec(body)) !== null) {\n    const item = match[1];\n    const title = (item.match(/<title><!\\[CDATA\\[([^\\]]+)\\]\\]><\\/title>/) || item.match(/<title>([^<]+)<\\/title>/) || [])[1] || '';\n    const link = (item.match(/<link>([^<]+)<\\/link>/) || [])[1] || '';\n    const pubDate = (item.match(/<pubDate>([^<]+)<\\/pubDate>/) || [])[1] || '';\n    \n    const pubTime = pubDate ? new Date(pubDate).getTime() : 0;\n    if (pubTime > cutoff && title) {\n      items.push({\n        source: 'Twitter',\n        title: title.trim(),\n        link,\n        published: pubDate\n      });\n    }\n  }\n}\n\nif (items.length === 0) {\n  items.push({ source: 'fallback', title: 'No new content in last 48h', link: '', published: new Date().toISOString() });\n}\n\nreturn [{ json: { items, count: items.length } }];"
+      },
+      "id": "parse-feeds",
+      "name": "Parse & Filter Recent Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge all influencer content into one prompt\nconst allItems = [];\nfor (const input of $input.all()) {\n  if (input.json.items) {\n    allItems.push(...input.json.items);\n  }\n}\n\n// Format for AI prompt\nconst contentList = allItems\n  .filter(i => i.title && i.title !== 'No new content in last 48h')\n  .slice(0, 30) // max 30 items\n  .map((item, i) => `${i+1}. [${item.source}] ${item.title}${item.link ? ' — ' + item.link : ''}`)\n  .join('\\n');\n\nconst today = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Ho_Chi_Minh' });\n\nreturn [{ json: { contentList, today, totalItems: allItems.length } }];"
+      },
+      "id": "merge-content",
+      "name": "Merge All Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "complete",
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a content strategist for Ton Nu Xuan Quyen (quyen.ai) — Vietnamese AI Consultant, Author, Speaker, Founder of CoreU AI and BluSaigon. She teaches AI to Vietnamese businesses and entrepreneurs. Her audience: Vietnamese business owners, entrepreneurs, professionals. Her tone: warm, direct, personal stories, no hype, practical.\n\nYou monitor 8 top AI influencers daily and create content ideas tailored specifically to her Vietnamese business audience."
+            },
+            {
+              "role": "user",
+              "content": "=Today is {{ $json.today }}.\n\nHere is the latest content from 8 AI influencers in the last 48 hours:\n\n{{ $json.contentList }}\n\nBased on this content, generate:\n\n## 📌 TOP 5 AI STORIES TODAY\nFor each: headline (Vietnamese angle), why it matters to Vietnamese businesses, one key takeaway.\n\n## 🎬 3 YOUTUBE VIDEO IDEAS\nFor each idea:\n- **Title** (YouTube-optimized, Vietnamese audience)\n- **Hook** (first 15 seconds — what grabs attention)\n- **Format**: [Tutorial / Story / Opinion / Case Study]\n- **Outline** (5-7 bullet points)\n- **Script opening** (first 90 seconds, full sentences, in Quyen's voice — warm, personal, no hype)\n- **Thumbnail concept** (what the visual should show)\n- **Best posting day**: [Mon/Wed/Fri]\n\n## 📱 5 SOCIAL MEDIA POSTS\nFor each: platform [Facebook/TikTok], full post in Vietnamese, hook + body + hashtags\n\n## 📧 1 NEWSLETTER TOPIC IDEA\nSubject line + 3-sentence summary of what the email would cover\n\nMake everything practical and grounded in real Vietnamese business context. No fluff."
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 3000,
+          "temperature": 0.7
+        }
+      },
+      "id": "openai-ideas",
+      "name": "Generate Content Ideas",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.3,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.first().json.message?.content || $input.first().json.choices?.[0]?.message?.content || 'No response';\nconst today = new Date().toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });\n\n// Split into chunks for Telegram (max 4096 chars)\nconst header = `🤖 *AI Daily Brief — ${today}*\\n━━━━━━━━━━━━━━━━━━━━\\n\\n`;\nconst fullMessage = header + aiResponse;\n\n// Telegram has 4096 char limit — split if needed\nconst chunks = [];\nlet remaining = fullMessage;\nwhile (remaining.length > 0) {\n  chunks.push(remaining.substring(0, 4000));\n  remaining = remaining.substring(4000);\n}\n\nreturn chunks.map(chunk => ({ json: { text: chunk } }));"
+      },
+      "id": "format-telegram",
+      "name": "Format for Telegram",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1560, 300]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "telegram-send",
+      "name": "Send to Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [1780, 300],
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CRED_ID",
+          "name": "Quyen Telegram Bot"
+        }
+      },
+      "notes": "Set up Telegram Bot: @BotFather → /newbot → get token. Then message your bot to get your chat_id from api.telegram.org/bot{TOKEN}/getUpdates"
+    }
+  ],
+  "connections": {
+    "Daily 6AM Vietnam": {
+      "main": [[{"node": "Influencer List", "type": "main", "index": 0}]]
+    },
+    "Influencer List": {
+      "main": [[
+        {"node": "Fetch YouTube RSS", "type": "main", "index": 0},
+        {"node": "Fetch Twitter RSS", "type": "main", "index": 0}
+      ]]
+    },
+    "Fetch YouTube RSS": {
+      "main": [[{"node": "Parse & Filter Recent Content", "type": "main", "index": 0}]]
+    },
+    "Fetch Twitter RSS": {
+      "main": [[{"node": "Parse & Filter Recent Content", "type": "main", "index": 0}]]
+    },
+    "Parse & Filter Recent Content": {
+      "main": [[{"node": "Merge All Content", "type": "main", "index": 0}]]
+    },
+    "Merge All Content": {
+      "main": [[{"node": "Generate Content Ideas", "type": "main", "index": 0}]]
+    },
+    "Generate Content Ideas": {
+      "main": [[{"node": "Format for Telegram", "type": "main", "index": 0}]]
+    },
+    "Format for Telegram": {
+      "main": [[{"node": "Send to Telegram", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Daily scrape of 8 AI influencers → GPT-4o generates video ideas, scripts, social posts → Telegram 6AM Vietnam",
+    "notes": "SETUP CHECKLIST:\n1. RSS.app account (free) → create RSS feeds for each Twitter handle → paste URLs into Influencer List node\n2. YouTube channel IDs: search 'youtube channel id finder' for each influencer\n3. OpenAI API key in n8n credentials\n4. Telegram Bot token + your chat_id\n5. Replace YOUR_TELEGRAM_CHAT_ID and YOUR_TELEGRAM_CRED_ID"
+  }
+}

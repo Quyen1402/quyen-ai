@@ -1,0 +1,195 @@
+{
+  "name": "Daily Facebook Auto-Post",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 12 * * *"
+            }
+          ]
+        }
+      },
+      "id": "daily-trigger",
+      "name": "Daily 7PM Vietnam",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300],
+      "notes": "7PM Vietnam = 12:00 UTC. Adjust as needed."
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "FB Content Calendar",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "read-sheet",
+      "name": "Read Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [460, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets"
+        }
+      },
+      "notes": "Sheet columns: Day | Date (DD/MM/YYYY) | Post Text | Image URL | Status | FB Post ID"
+    },
+    {
+      "parameters": {
+        "jsCode": "const today = new Date().toLocaleDateString('en-GB', {\n  day: '2-digit', month: '2-digit', year: 'numeric',\n  timeZone: 'Asia/Ho_Chi_Minh'\n});\n\nconst rows = $input.all();\nconst todayRow = rows.find(r => r.json.Date === today && r.json.Status !== 'Posted');\n\nif (!todayRow) {\n  return [{ json: { skip: true, message: `No post scheduled for ${today}` } }];\n}\n\nreturn [{ json: { ...todayRow.json, skip: false } }];"
+      },
+      "id": "find-today",
+      "name": "Find Today's Post",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.skip }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "equal" }
+            }
+          ]
+        }
+      },
+      "id": "check-skip",
+      "name": "Post exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v18.0/YOUR_FB_PAGE_ID/feed",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "message", "value": "={{ $json['Post Text'] }}" },
+            { "name": "access_token", "value": "YOUR_FB_PAGE_ACCESS_TOKEN" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "post-facebook",
+      "name": "Post to Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1120, 200],
+      "notes": "Get Page Access Token: developers.facebook.com → Graph API Explorer → select your page → generate token with pages_manage_posts permission"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "FB Content Calendar",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Posted",
+            "FB Post ID": "={{ $json.id }}"
+          }
+        },
+        "where": {
+          "values": [
+            { "lookupColumn": "Date", "lookupValue": "={{ $('Find Today\\'s Post').item.json.Date }}" }
+          ]
+        }
+      },
+      "id": "update-sheet",
+      "name": "Mark as Posted",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [1340, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "✅ *Facebook posted!*\nDate: {{ $('Find Today\\'s Post').item.json.Date }}\nPost ID: `{{ $json.id }}`",
+        "additionalFields": { "parse_mode": "Markdown" }
+      },
+      "id": "notify-success",
+      "name": "Notify Success",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [1560, 200],
+      "credentials": {
+        "telegramApi": { "id": "YOUR_TELEGRAM_CRED_ID", "name": "Quyen Telegram Bot" }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "⚠️ *No Facebook post today*\n{{ $json.message }}",
+        "additionalFields": { "parse_mode": "Markdown" }
+      },
+      "id": "notify-skip",
+      "name": "Notify Skip",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [1120, 420],
+      "credentials": {
+        "telegramApi": { "id": "YOUR_TELEGRAM_CRED_ID", "name": "Quyen Telegram Bot" }
+      }
+    }
+  ],
+  "connections": {
+    "Daily 7PM Vietnam": {
+      "main": [[{"node": "Read Google Sheet", "type": "main", "index": 0}]]
+    },
+    "Read Google Sheet": {
+      "main": [[{"node": "Find Today's Post", "type": "main", "index": 0}]]
+    },
+    "Find Today's Post": {
+      "main": [[{"node": "Post exists?", "type": "main", "index": 0}]]
+    },
+    "Post exists?": {
+      "main": [
+        [{"node": "Notify Skip", "type": "main", "index": 0}],
+        [{"node": "Post to Facebook", "type": "main", "index": 0}]
+      ]
+    },
+    "Post to Facebook": {
+      "main": [[{"node": "Mark as Posted", "type": "main", "index": 0}]]
+    },
+    "Mark as Posted": {
+      "main": [[{"node": "Notify Success", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "description": "Daily 7PM Vietnam → read Google Sheet → post to Facebook → mark done → Telegram confirmation",
+    "notes": "SETUP:\n1. Create Google Sheet 'FB Content Calendar' with columns: Day | Date | Post Text | Image URL | Status | FB Post ID\n2. Paste all 30 posts from 30-day-facebook.md with dates\n3. FB Page Access Token: developers.facebook.com (needs pages_manage_posts permission, long-lived token)\n4. Connect Google Sheets OAuth in n8n credentials"
+  }
+}
