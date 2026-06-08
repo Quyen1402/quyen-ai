@@ -1017,11 +1017,11 @@ footer{
   <span class="kicker kicker-gold kicker-center reveal" style="justify-content:center">Stay in the Loop</span>
   <h2 class="reveal">AI that's worth<br><em>your attention.</em></h2>
   <p class="nl-sub reveal">Practical insights on applying AI to real businesses — tools, frameworks, and what's actually working. Sent only when there's something genuinely useful to share.</p>
-  <div class="nl-form reveal">
-    <input type="email" placeholder="Your email address"/>
-    <button type="button">Subscribe →</button>
+  <div class="nl-form reveal" id="nl-form">
+    <input type="email" id="nl-email" placeholder="Your email address" autocomplete="email"/>
+    <button type="button" id="nl-btn">Subscribe →</button>
   </div>
-  <p class="nl-note reveal">No noise. No weekly fluff. Unsubscribe any time.</p>
+  <p class="nl-note reveal" id="nl-note">No noise. No weekly fluff. Unsubscribe any time.</p>
 </section>
 
 <!-- FOOTER -->
@@ -1083,6 +1083,43 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     if(!open)item.classList.add('open');
   });
 });
+
+// ── NEWSLETTER FORM → BEEHIIV ──
+(function(){
+  const btn=document.getElementById('nl-btn');
+  const inp=document.getElementById('nl-email');
+  const note=document.getElementById('nl-note');
+  // Replace BEEHIIV_PUB_ID with your Beehiiv Publication ID (e.g. pub_xxxxxxxx)
+  const PUB_ID='BEEHIIV_PUB_ID';
+
+  btn.addEventListener('click',async()=>{
+    const email=inp.value.trim();
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      inp.style.borderColor='rgba(168,92,114,.6)';
+      inp.focus();return;
+    }
+    btn.textContent='Sending…';btn.disabled=true;inp.disabled=true;
+    try{
+      const res=await fetch(`https://api.beehiiv.com/v2/publications/${PUB_ID}/subscriptions`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email,reactivate_existing:true,send_welcome_email:true,
+          utm_source:'quyen.ai',utm_medium:'website',utm_campaign:'newsletter_form'})
+      });
+      if(res.ok){
+        document.getElementById('nl-form').innerHTML=
+          '<p style="font-family:\'Cormorant Garamond\',serif;font-size:1.35rem;font-style:italic;color:rgba(255,255,255,.7);margin:0 auto;max-width:440px">You\'re in. First email coming soon.</p>';
+        note.textContent='Check your inbox to confirm.';
+      } else {throw new Error();}
+    } catch(e){
+      btn.textContent='Subscribe →';btn.disabled=false;inp.disabled=false;
+      note.textContent='Something went wrong — please try again.';
+      note.style.color='rgba(168,92,114,.8)';
+    }
+  });
+
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')btn.click()});
+})();
 </script>
 </body>
 </html>
